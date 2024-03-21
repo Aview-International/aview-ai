@@ -1,0 +1,311 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .link {
+    @apply text-blue underline;
+  }
+
+  .rounded-border-gradient:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(54deg, #ff00ff 0%, #00ffff 100%);
+    z-index: -1;
+    top: -1%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+
+  .border-gradient {
+    border-style: solid;
+    border-width: 0 1px 0 1px;
+    border-image: linear-gradient(54deg, #ff00ff 0%, #00ffff 100%) 1;
+  }
+
+  .navigation {
+    @apply mx-s3 md:mx-auto md:w-[95%];
+  }
+
+  .section {
+    @apply mb-s16 md:mb-s24;
+  }
+
+  .m-horizontal {
+    @apply mx-auto w-[90%] max-w-[1240px];
+  }
+
+  .gradient-1 {
+    background: linear-gradient(54deg, #ff00ff 0%, #00ffff 100%);
+  }
+
+  .gradient-2 {
+    background: linear-gradient(54deg, #ff00ff 7.13%, #00ffff 91%);
+  }
+
+  .gradient-3 {
+    background: linear-gradient(180deg, #ae00ff25 19.44%, #01ffff2a 100%);
+  }
+
+  .gradient-dark {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.0726563) 51.56%,
+      rgba(255, 255, 255, 0.045) 100%
+    );
+  }
+  .gradient-text {
+    @apply inline-block bg-clip-text text-transparent;
+  }
+
+  .border-gradient {
+    display:inline-block;
+    border-radius:3px;
+    background:
+     linear-gradient(#000017 0 0) padding-box,
+     linear-gradient(54deg, #ff00ff 0%, #00ffff 100%) border-box; 
+  }
+
+  .transition-300 {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .title {
+    @apply text-7xl font-bold text-white md:text-8xl;
+  }
+
+  .h2 {
+    @apply text-5xl font-bold text-white md:text-6xl;
+  }
+
+  .heading {
+    @apply text-6xl font-bold md:text-7xl;
+  }
+
+  .body {
+    @apply text-lg text-white md:text-xl;
+  }
+  .phone-number input {
+    @apply w-full bg-transparent pl-s2;
+  }
+  .phone-number input:focus {
+    @apply outline-none;
+  }
+  .phone-number > div {
+    @apply p-2;
+  }
+  .phone-number img {
+    @apply max-w-[90%];
+  }
+  .phone-number > div > div > div:last-of-type {
+    @apply ml-s2 mb-s1 h-[11px] w-[11px] border-r-[3px] border-b-[3px] border-white opacity-100;
+  }
+  .h-screen-trick {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    @apply min-h-[640px] !important;
+  }
+  .animate-marquee {
+    animation: slide-text 18s linear infinite;
+  }
+
+  .animate-images {
+    animation: slide-testimonial 18s linear infinite;
+  }
+
+  .animate-images-reverse {
+    animation: slide-testimonial-reverse 18s linear infinite;
+  }
+
+  /* For Chrome browsers */
+  .slider-thumb::-webkit-slider-thumb {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* For Firefox browsers */
+  .slider-thumb::-moz-range-thumb {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    -moz-appearance: none;
+    -moz-tap-highlight-color: transparent;
+  }
+  .track-background {
+    background: linear-gradient(
+      90deg,
+      rgba(251, 0, 255, 0.215) 1.3%,
+      rgba(0, 255, 255, 0.5) 100%
+    );
+  }
+  .remove-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .header-animation {
+    animation: fadeInDown 0.95s ease-in-out 0s 1 normal none running;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  .instagram {
+    background: radial-gradient(
+          51.8% 49.8% at 36.25% 96.55%,
+          #ffd600 0%,
+          #ff6930 48.44%,
+          #fe3b36 73.44%,
+          rgba(254, 59, 54, 0) 100%
+        )
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+      radial-gradient(
+        182.65% 122.8% at 84.5% 113.5%,
+        #ff1b90 24.39%,
+        #f80261 43.67%,
+        #ed00c0 68.85%,
+        #c500e9 77.68%,
+        #7017ff 89.32%
+      );
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #000017;
+    border-radius: 100vw;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #99999c;
+    border-radius: 100vw;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00ffff;
+  }
+
+  .roll {
+    position: relative;
+    animation: roll-animate 7s infinite;
+    text-transform: uppercase;
+  }
+
+  .size {
+    animation: size-animate 0.4s ease-out forwards;
+    transform-origin: left center;
+  }
+
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+
+  @keyframes slide-text {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-testimonial {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes slide-testimonial-reverse {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes roll-animate {
+    0%,
+    100% {
+      top: 0;
+    }
+    11% {
+      top: 0px;
+    }
+    22% {
+      top: 0px;
+    }
+    33% {
+      top: -60px;
+    }
+    44% {
+      top: -60px;
+    }
+    55% {
+      top: -123px;
+    }
+    66% {
+      top: -123px;
+    }
+    77% {
+      top: -187px;
+    }
+    88% {
+      top: -187px;
+    }
+    99% {
+      top: -247px;
+    }
+  }
+
+  @keyframes size-animate {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.85);
+    }
+  }
+}
