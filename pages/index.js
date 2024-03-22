@@ -2,7 +2,7 @@ import SEO from '../components/SEO/SEO';
 import Header from '../components/navigation/Header';
 import Footer from '../components/navigation/Footer';
 import Blobs from '../components/UI/Blobs';
-import AiToolsPage from '../components/sections/ai-tools/AiToolsPage';
+import AiToolsPage from '../components/sections/home/AiToolsPage';
 
 const Home = () => {
   return (
@@ -13,7 +13,8 @@ const Home = () => {
       />
       <Header curPage="Home" />
       <AiToolsPage />
-      <Footer />
+      <Footer curPage="Home" />
+      {/* <Blobs /> */}
     </>
   );
 };
