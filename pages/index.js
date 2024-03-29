@@ -14,7 +14,7 @@ const Home = () => {
       <Header curPage="Home" />
       <AiToolsPage />
       <Footer curPage="Home" />
-      {/* <Blobs /> */}
+      <Blobs />
     </>
   );
 };
