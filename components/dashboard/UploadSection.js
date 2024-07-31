@@ -12,7 +12,7 @@ const UploadSection = ({ onFileUpload, onLanguageChange }) => {
   };
 
   return (
-    <div className="w-1/3 h-max pt-4 pb-11 px-3 rounded-xl bg-white-transparent">
+    <div className="w-1/3 h-full pt-4 pb-11 px-3 rounded-xl bg-white-transparent">
       <h1 className="text-white text-2xl pb-11 b-4">Subtitle Generator</h1>
       <p className="text-white py-3">Upload your video file</p>
       <div className="bg-white-transparent rounded-xl border-white p-6 mb-4">
@@ -36,7 +36,7 @@ const UploadSection = ({ onFileUpload, onLanguageChange }) => {
       <p className="text-white text-sm py-3">What languages do you want translated?</p>
       </div>
 
-      
+
       <Button type="secondary" purpose="onClick" onClick={() => {}}>
          <select className="mr-2 bg-black text-white p-2" onChange={(e) => onLanguageChange(e.target.value)}>
           <option value="English">English</option>

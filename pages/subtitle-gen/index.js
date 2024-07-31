@@ -22,14 +22,10 @@ const SubtitleGenerator = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen p-6">
+    <div className="flex flex-col items-stretch bg-black min-h-screen p-6">
       <Header />
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex">
-          
-        </div>
-      </div>
-      <div className="flex">
+     
+      <div className="flex justify-center items-center  ">
         <UploadSection onFileUpload={handleFileUpload} onLanguageChange={handleLanguageChange} />
         <div className="flex flex-col flex-1 ml-6">
           <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
