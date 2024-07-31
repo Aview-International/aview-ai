@@ -1,10 +1,10 @@
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { SUPPORTED_REGIONS } from '../../constants/constants';
 import CheckBox from '../FormComponents/CheckBox';
 import OnboardingButton from '../Onboarding/button';
 import Image from 'next/image';
 import ToggleButton from '../FormComponents/ToggleButton';
-import { useEffect } from 'react';
 import Textarea from '../FormComponents/Textarea';
 
 const TranslateOptions = ({
@@ -18,6 +18,7 @@ const TranslateOptions = ({
   const youtubePicture = useSelector(
     (state) => state.youtube?.channelDetails?.thumbnail
   );
+
   const findLocalDialect = (language) => {
     let allLanguages = [];
     SUPPORTED_REGIONS.forEach(({ data }) => {
