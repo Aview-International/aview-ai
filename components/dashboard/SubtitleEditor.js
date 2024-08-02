@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const SubtitleEditor = ({ subtitles, onSubtitlesChange }) => {
+ const SubtitleEditor = ({ subtitles, onSubtitlesChange }) => {
   const editorRef = useRef(null);
 
   useEffect(() => {

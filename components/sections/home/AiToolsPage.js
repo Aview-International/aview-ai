@@ -12,7 +12,7 @@ const AiToolsPage = () => {
           Effortlessly capture, edit, and share audio & video content with
           Aview&rsquo;s comprehensive AI tools
         </p>
-      </div>                                                                                                                                                                                              2222222222222222222222222222222
+      </div>
       <div className="mb-s18 flex grid-cols-3 flex-col gap-5 md:grid md:gap-8">
         {AI_Tools_Page.map((item, index) => {
           return (
