@@ -14,21 +14,22 @@ const SpeechUpload = () => {
     };
   
     return (
-      <div className="flex justify-center items-center bg-black">
-        <div className="bg-white-transparent w-full max-w-lg rounded-lg shadow-lg text-white p-10">
-          <h2 className="text-xl font-semibold text-center mb-4">Record yourself or upload your own audio</h2>
-          <p className="text-gray-300 text-center mb-6">
+      <div className="flex justify-center items-center bg-white-transparent rounded-xl">
+        <div className= " w-3/5 rounded-lg shadow-lg text-white p-10">
+          <h2 className="text-xl font-semibold text-center m-9">Record yourself or upload your own audio</h2>
+          <p className="text-gray-300 text-center m-5">
             
             Enable mic access, record yourself reading some prompts and generate the sample in different voices
           </p>
-          <div className="flex justify-around">
+          <div className="flex justify-around mb-12">
             <Button onClick={startRecording} type="primary">
               Start recording
             </Button>
             <label className="cursor-pointer">
-              <span className=" text-white rounded-full px-6 py-2 inline-block hover:bg-gray-700 hover:text-gray-200">
+              <div></div>
+              <Button on Click={handleFileUpload} type="secondary">
                 Upload audio file
-              </span>
+              </Button>
               <input type="file" className="hidden" accept="audio/*" onChange={handleFileUpload} />
             </label>
           </div>
