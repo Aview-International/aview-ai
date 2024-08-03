@@ -6,8 +6,8 @@ const TextConvert = () => {
   return (
     <div>
         <Header/>
-        <div className="bg-black min-h-screen p-6 flex flex-row items-center justify-center">
-      <h1 className="text-white text-7xl font-bold mb-4">Text to Speech Conversion</h1>
+        <div className="bg-white-transparent min-h-screen p-6 flex flex-col items-center justify-center">
+      <h1 className="text-white text-7xl font-bold mt-12 mb-4">Text to Speech Conversion</h1>
       <br/>
       <TextUpload />
       </div>
