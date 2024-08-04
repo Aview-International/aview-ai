@@ -38,13 +38,14 @@ const SubtitleUpload = ({ onFileUpload }) => {
       </div>
       <div className="flex flex-col items-start justify-center">
         <p className="my-3 text-sm">What languages do you want translated?</p>
-        <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex w-full flex-row items-center justify-around">
           <CustomSelectInput
             options={options}
             onChange={(option) =>
               setPayload({ ...payload, originLanguage: option })
             }
             value={payload.originLanguage}
+            className="flex-grow-[2] mr-2"
           />
           <span className="text-white">→</span>
           <CustomSelectInput
@@ -53,6 +54,7 @@ const SubtitleUpload = ({ onFileUpload }) => {
               setPayload({ ...payload, translatedLanguage: option })
             }
             value={payload.translatedLanguage}
+            className="flex-grow-[2] mr-2"
           />
         </div>
         <div className="mt-6">
