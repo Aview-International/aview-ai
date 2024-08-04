@@ -1,64 +1,74 @@
-
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Button from '../../components/UI/Button';
-import Border from '../../components/UI/Border';
-import UploadIcon from '../../public/img/icons/upload-icon1.svg';
+import CustomSelectInput from '../FormComponents/CustomSelectInput';
 
-const UploadSection = ({ onFileUpload, onLanguageChange }) => {
+const VoiceUpload = ({ onFileUpload, onLanguageChange }) => {
+  const [payload, setPayload] = useState({
+    originLanguage: { value: 'en', label: 'English' },
+    translatedLanguage: { value: '', label: 'Select' }
+  });
+
+  const options = [
+    { value: 'en', label: 'English' },
+    { value: 'es', label: 'Spanish' },
+    { value: 'fr', label: 'French' },
+    // Add more language options as needed
+  ];
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     onFileUpload(file);
   };
 
   return (
-    <div className="w-1/3 h-full pt-4 pb-11 px-3 rounded-xl bg-white-transparent">
-      <h1 className="text-white text-2xl pb-11 b-4">Multilingual Voiceover Generator</h1>
-      <p className="text-white py-3">How do you want to add your voiceover?</p>
-      <div className="bg-white-transparent rounded-xl border-white p-6 mb-4">
-        <input
-          type="file"
-          className="hidden"
-          accept="video/mp4"
-          onChange={handleFileChange}
-          id="video_upload"
-        />
-        <label className="cursor-pointer" htmlFor="video_upload">
-          <div className="flex flex-col  items-center m-4">
-            <img src="/upload-icon.svg" alt="Upload" className="h-16 mb-4" />
-            <p className="text-white text-xl">Upload file</p>
-            <p className="text-white text-sm m-3">Automatically generate captions based on your video</p>
+    <div className="w-1/3 h-full pt-4 pb-11 px-6 rounded-xl bg-white-transparent">
+      <h1 className="text-white text-2xl font-bold mb-6">Multilingual Voiceover Generator</h1>
+      <p className="text-white mb-4">How do you want to add your voiceover?</p>
+      <div className="flex space-x-4 mb-6">
+        <div className="flex-1 bg-gray-800 rounded-xl p-4 cursor-pointer">
+          <div className="flex flex-col items-center">
+            {/* Placeholder for upload icon */}
+            <div className="w-12 h-12 bg-blue-500 rounded-lg mb-2"></div>
+            <p className="text-white text-lg font-semibold">Upload voiceover file</p>
+            <p className="text-white text-sm text-center mt-2">
+              Upload your own voiceover file to be converted into a new language
+            </p>
           </div>
-        </label>
+        </div>
+        <div className="flex-1 bg-gray-800 rounded-xl p-4 cursor-pointer">
+          <div className="flex flex-col items-center">
+            {/* Placeholder for contextual icon */}
+            <div className="w-12 h-12 bg-blue-500 rounded-lg mb-2"></div>
+            <p className="text-white text-lg font-semibold">Contextual voiceover</p>
+            <p className="text-white text-sm text-center mt-2">
+              Automatically convert your voiceover to a new language based on your content
+            </p>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center mb-4">
-        <div className = "m-2">
-      <p className="text-white text-sm py-3">What languages do you want translated?</p>
+      <p className="text-white mb-4">What language do you want translated?</p>
+      <div className="flex w-full flex-row items-center justify-between mb-6">
+        <CustomSelectInput
+          options={options}
+          onChange={(option) =>
+            setPayload({ ...payload, originLanguage: option })
+          }
+          value={payload.originLanguage}
+        />
+        <span className="text-white mx-2">→</span>
+        <CustomSelectInput
+          options={options}
+          onChange={(option) =>
+            setPayload({ ...payload, translatedLanguage: option })
+          }
+          value={payload.translatedLanguage}
+        />
       </div>
-
-
       <Button type="secondary" purpose="onClick" onClick={() => {}}>
-         <select className="mr-2 bg-black text-white p-2" onChange={(e) => onLanguageChange(e.target.value)}>
-          <option value="English">English</option>
-        </select>
-        </Button>
-       
-        <span className="text-white mx-2">to</span>
-
-        <Button type="secondary" purpose="onClick" onClick={() => {}}>
-        <select className="ml-2 bg-black text-white p-2" onChange={(e) => onLanguageChange(e.target.value)}>
-          <option value="Select">Select</option>
-        </select>
-        </Button>
-        
-      </div>
-      <div className="flex justify-between">
-        <Button type="secondary" purpose="onClick" onClick={() => {}}>
-          Convert
-        </Button>
-      </div>
+        Convert
+      </Button>
     </div>
   );
 };
 
-export default UploadSection;
+export default VoiceUpload;

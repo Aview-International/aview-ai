@@ -4,7 +4,7 @@ import Button from '../../components/UI/Button';
 import UploadIcon from '../../public/img/icons/upload.svg';
 import CustomSelectInput from '../FormComponents/CustomSelectInput';
 
-const UploadSection = ({ onFileUpload }) => {
+const SubtitleUpload = ({ onFileUpload }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     onFileUpload(file);
@@ -46,7 +46,7 @@ const UploadSection = ({ onFileUpload }) => {
             }
             value={payload.originLanguage}
           />
-          <span className="mx-2 basis-1/5 bg-red">to</span>
+          <span className="text-white">→</span>
           <CustomSelectInput
             options={options}
             onChange={(option) =>
@@ -65,4 +65,4 @@ const UploadSection = ({ onFileUpload }) => {
   );
 };
 
-export default UploadSection;
+export default SubtitleUpload;
