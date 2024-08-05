@@ -4,6 +4,10 @@ import VoiceoverUpload from '../../components/dashboard/VoiceoverUpload';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
 import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
 
+import DashboardLayout from '../../components/dashboard/DashboardLayout';
+import DashboardSidebar from '../../components/dashboard/Sidebar';
+import UploadSection from '../../components/dashboard/UploadSection';
+
 const VoiceoverGenerator = () => {
   const [videoFile, setVideoFile] = useState(null);
 
@@ -22,18 +26,21 @@ const VoiceoverGenerator = () => {
   };
 
   return (
-    <div className="flex flex-col items-stretch bg-black min-h-screen p-6">
-      <Header />
-     
-      <div className="flex justify-center items-center  ">
-        <VoiceoverUpload onFileUpload={handleFileUpload} />
-        <div className="flex flex-col flex-1 ml-6">
-          <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
-          <SubtitleEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} />
-        </div>
+    <>
+      <div className="flex h-3/4 w-full flex-row">
+        <DashboardSidebar>
+          <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
+        </DashboardSidebar>
+
+        <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
       </div>
-    </div>
+      <SubtitleEditor
+        subtitles={subtitles}
+        onSubtitlesChange={handleSubtitlesChange}
+      />
+    </>
   );
 };
 
+VoiceoverGenerator.getLayout = DashboardLayout;
 export default VoiceoverGenerator;

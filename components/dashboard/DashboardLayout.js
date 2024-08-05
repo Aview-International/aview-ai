@@ -5,7 +5,7 @@ const DashboardStructure = ({ children }) => {
   return (
     <main className="flex max-h-screen w-full flex-col text-white">
       <Header />
-      <div className={`ml-auto flex h-full w-full px-4 py-1.5`}>{children}</div>
+      <div className={`h-full w-full px-4 py-1.5 flex-grow`}>{children}</div>
     </main>
   );
 };

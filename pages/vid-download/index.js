@@ -1,16 +1,15 @@
 import React from 'react';
 import VidDownload from '../../components/dashboard/VidDownload';
 import Header from '../../components/dashboard/Header';
+import DashboardLayout from '../../components/dashboard/DashboardLayout';
 
 const VideoDownload = () => {
   return (
-    <div>
-        <Header/>
+    <div className="rounded-lg h-screen bg-white-transparent">
       <VidDownload />
-      
-      <div/>
     </div>
   );
 };
 
+VideoDownload.getLayout = DashboardLayout;
 export default VideoDownload;
