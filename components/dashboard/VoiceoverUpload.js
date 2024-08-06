@@ -16,7 +16,7 @@ const VoiceUpload = ({ onFileUpload }) => {
   };
 
   return (
-    <div className="h-full w-1/3 rounded-xl bg-white-transparent px-6 pt-4 pb-11">
+    <div className="h-full w-full rounded-xl bg-white-transparent px-6 pt-4 pb-11">
       <h1 className="mb-6 text-2xl font-bold text-white">
         Multilingual Voiceover Generator
       </h1>

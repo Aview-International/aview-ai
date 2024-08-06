@@ -4,6 +4,7 @@ import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import DashboardSidebar from '../../components/dashboard/Sidebar';
 import UploadSection from '../../components/dashboard/UploadSection';
+//import VoiceoverUpload from '../../components/dashboard/VoiceoverUpload';
 
 const VoiceoverGenerator = () => {
   const [videoFile, setVideoFile] = useState(null);
