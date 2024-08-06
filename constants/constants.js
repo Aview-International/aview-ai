@@ -252,30 +252,35 @@ export const AI_Tools_Page = [
     description:
       'Unlock worldwide engagement by effortlessly translating your content and generating subtitles. Make your message accessible and impactful across global audiences with ease.',
     img: caption,
+    link: 'subtitle-gen',
   },
   {
     title: 'Multilingual Voiceover Generator',
     description:
       'Elevate your contents global appeal by seamlessly translating and generating voiceovers in multiple languages. Connect with audiences worldwide and amplify your channel\u0027s reach.',
     img: voice_recognition,
+    link: 'voice-gen',
   },
   {
     title: 'Speech-to-Text Conversion',
     description:
       'Streamline your content creation by effortlessly converting speech into text, paving the way for global translation and accessibility. Expand your reach and connect with audiences worldwide.',
     img: voice_to_text,
+    link: 'speech-to-text',
   },
   {
     title: 'Text-to-Speech Conversion',
     description:
       'Boost your video\u0027s global appeal by translating text into engaging spoken content across a multitude of languages. Elevate accessibility and captivate audiences worldwide.',
     img: text_to_speech,
+    link: 'text-to-speech',
   },
   {
     title: 'YouTube Video Downloader',
     description:
       'Effortlessly download your video\u0027s for seamless translation and adaptation, enabling your global audience to enjoy your content in their native languages.',
     img: youtube_ai,
+    link: 'vid-download',
   },
 ];
 
