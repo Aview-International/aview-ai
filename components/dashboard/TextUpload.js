@@ -1,50 +1,44 @@
 import React, { useState } from 'react';
-import Border from '../../components/UI/Border';
-import Shadow from '../../components/UI/Shadow';
 import Button from '../../components/UI/Button';
+import Textarea from '../FormComponents/Textarea';
+import CustomSelectInput from '../FormComponents/CustomSelectInput';
 
 const TextToSpeechInput = () => {
+  const options = ['English', 'Hindi', 'Spanish', 'Portguese', 'Arabic'];
   const [inputText, setInputText] = useState('');
-  const [language, setLanguage] = useState('English');
+  const [language, setLanguage] = useState();
+  const [output, setOutput] = useState(false);
 
   return (
-    <div className="m-2 flex w-3/4 h-full flex-col justify-center rounded-xl bg-white-transparent p-4">
-      <Shadow classes="flex flex-col jstify-center h-2/4 w-full mr-s4 cursor-pointer">
-        <Border
-          borderRadius="2xl"
-          classes="flex flex-col justify-center w-full h-2/4"
-        >
-          <div className="h-full w-full rounded-xl bg-black">
-            <textarea
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              className="h-24 w-full resize-none border-none bg-transparent p-4 text-xl text-white outline-none"
-              placeholder="Type in any language and turn text into natural sounding speech"
-            />
-          </div>
-        </Border>
-      </Shadow>
-
-      <div className="mt-6 mb-2 flex items-center justify-between">
-        <Shadow className="rounded-3xl">
-          <Border className="rounded-3xl">
-            <select
-              className="rounded bg-black p-2 text-white"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <option value="English">English</option>
-              <option value="Spanish">Spanish</option>
-              <option value="French">French</option>
-              {/* Add more languages as needed */}
-            </select>
-          </Border>
-        </Shadow>
-
-        <Button className="bg-blue-500 hover:bg-blue-700 rounded py-2 px-4 font-bold text-white">
-          <span className="material-icons">Convert</span>
-        </Button>
+    <div className="h-full w-3/4">
+      <div className="flex h-2/4 flex-col justify-center rounded-xl bg-white-transparent">
+        <div className="p-4">
+          <Textarea
+            _id={'textarea'}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Type in any language and turn text into natural sounding speech"
+            value={inputText}
+            textBlack={false}
+            bgColor={false}
+          />
+        </div>
+        <div className="h-[1px] w-full bg-white/40"></div>
+        <div className="flex items-center justify-between p-4">
+          <CustomSelectInput
+            options={options}
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="mr-2 flex-grow-[2]"
+          />
+          <Button>Convert</Button>
+        </div>
       </div>
+      {output && (
+        <div className="mt-8 flex items-center justify-center gap-x-6">
+          <Button type="primary">Download speech File</Button>
+          <Button type="secondary">Restart</Button>
+        </div>
+      )}
     </div>
   );
 };

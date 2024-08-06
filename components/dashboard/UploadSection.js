@@ -47,21 +47,23 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
 
       <div className="flex flex-col items-start justify-center">
         <p className="my-3 text-sm">What languages do you want translated?</p>
-        <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex w-full flex-row items-center justify-around">
           <CustomSelectInput
             options={options}
             onChange={(option) =>
               setPayload({ ...payload, originLanguage: option })
             }
             value={payload.originLanguage}
+            className="mr-2 flex-grow-[2]"
           />
-          <span className="mx-2 basis-1/5">to</span>
+          <span className="text-white">→</span>
           <CustomSelectInput
             options={options}
             onChange={(option) =>
               setPayload({ ...payload, translatedLanguage: option })
             }
             value={payload.translatedLanguage}
+            className="mr-2 flex-grow-[2]"
           />
         </div>
         <div className="mt-6">
@@ -95,6 +97,7 @@ const ImageSection = ({
             src={image}
             alt="Upload"
             width={130}
+            id="video_upload"
             height={isVoiceGen ? 100 : 140}
           />
           <p className={`${isVoiceGen} ? 'text-sm' : 'text-xs'`}>{text}</p>
