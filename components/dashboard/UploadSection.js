@@ -18,11 +18,11 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
   });
 
   return (
-    <div className="mt-2 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white">
+    <div className="mt-2 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white w-1/3" style={{ height: 'auto', maxHeight: '75vh', maxWidth: '33.333%' }}> {/* Width control added */}
       <h1 className="mb-5 text-xl">
         {isVoiceGen ? "Multilingual Voiceover Generator" : "Subtitle Generator"}
       </h1>
-      <p className="my-5 text-md text-white">
+      <p className="my-5 pt-3 px-3 text-md text-white">
         {isVoiceGen ? "How do you want to add your voiceover?" : "Upload your video file"}
       </p>
 
@@ -34,7 +34,7 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
           text="Automatically generate captions based on your video"
         />
       ) : (
-        <div className="flex h-full w-full flex-row items-center justify-center gap-x-2">
+        <div className="flex h-auto w-full flex-row items-center justify-center gap-x-2">
           <ImageSection
             image={Caption}
             handleFileChange={handleFileChange}
@@ -51,7 +51,7 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
       )}
 
       <div className="flex flex-col items-start justify-center mt-4">
-        <p className="my-3 text-sm">
+        <p className="my-3 py-2 px-4 text-md">
           What language{!isVoiceGen ? 's' : ''} do you want translated?
         </p>
         <div className="flex w-full flex-row items-center justify-around">
@@ -74,8 +74,8 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
             placeholder="Select"
           />
         </div>
-        <div className="mt-6 w-full">
-          <Button type="secondary" purpose="onClick" className="w-full">
+        <div className="mt-6 px-12 py-5 w-full">
+          <Button type="secondary" purpose="onClick" className="w-2">
             {isVoiceGen ? 'Convert' : 'Generate subtitles'}
           </Button>
         </div>
