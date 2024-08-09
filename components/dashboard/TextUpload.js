@@ -10,8 +10,8 @@ const TextToSpeechInput = () => {
   const [output, setOutput] = useState(false);
 
   return (
-    <div className="h-full w-3/4">
-      <div className="flex h-2/4 flex-col justify-center rounded-xl bg-white-transparent">
+    <div className="h-full w-3/5">
+      <div className="flex h-3/5 flex-col justify-center rounded-xl bg-white-transparent">
         <div className="p-4">
           <Textarea
             _id={'textarea'}

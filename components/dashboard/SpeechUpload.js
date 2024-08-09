@@ -14,16 +14,16 @@ const SpeechUpload = () => {
   
 
   return (
-    <div className="h-full w-1/2">
-      <div className="flex h-full flex-col justify-center rounded-xl bg-white-transparent px-6 py-14">
+    <div className="h-full w-2/3">
+      <div className="flex h-96 w-full flex-col items-center justify-center rounded-xl bg-white-transparent px-6 py-14">
         {isRecording ? (
           <RecordAudio />
         ) : (
           <>
-            <h2 className="mt-5 text-center text-xl font-semibold">
+            <h2 className="m-5 text-center text-xl font-semibold">
               Record yourself or upload your own audio
             </h2>
-            <p className="m-5 text-center text-white/70 w-full">
+            <p className="m-5 text-center justify-center w-1/2 text-white/70">
               Enable mic access, record yourself reading some prompts and
               generate the sample in different voices
             </p>
