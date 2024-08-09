@@ -20,10 +20,12 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
   return (
     <div className="mt-2 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white">
       <h1 className="mb-5 text-xl">
-        {isVoiceGen ? "Multilingual Voiceover Generator" : "Subtitle Generator"}
+        {isVoiceGen ? 'Multilingual Voiceover Generator' : 'Subtitle Generator'}
       </h1>
-      <p className="my-5 text-md text-white">
-        {isVoiceGen ? "How do you want to add your voiceover?" : "Upload your video file"}
+      <p className="text-md my-5 text-white">
+        {isVoiceGen
+          ? 'How do you want to add your voiceover?'
+          : 'Upload your video file'}
       </p>
 
       {!isVoiceGen ? (
@@ -40,17 +42,19 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
             handleFileChange={handleFileChange}
             title="Upload voiceover file"
             text="Upload your own voiceover file to be converted into a new language"
+            isVoiceGen={isVoiceGen}
           />
           <ImageSection
             image={Translate}
             handleFileChange={handleFileChange}
             title="Contextual voiceover"
             text="Automatically convert your voiceover to a new language based on your content"
+            isVoiceGen={isVoiceGen}
           />
         </div>
       )}
 
-      <div className="flex flex-col items-start justify-center mt-4">
+      <div className="mt-4 flex flex-col items-start justify-center">
         <p className="my-3 text-sm">
           What language{!isVoiceGen ? 's' : ''} do you want translated?
         </p>
@@ -63,7 +67,7 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
             value={payload.originLanguage}
             className="mr-2 flex-grow-[2]"
           />
-          <span className="text-white text-4xl">→</span>
+          <span className="text-4xl text-white">→</span>
           <CustomSelectInput
             options={options}
             onChange={(option) =>
@@ -84,26 +88,34 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
   );
 };
 
-const ImageSection = ({ image, handleFileChange, title, text }) => {
+const ImageSection = ({
+  image,
+  handleFileChange,
+  title,
+  text,
+  isVoiceGen = false,
+}) => {
   return (
     <>
       <input
         type="file"
         className="hidden"
-        accept={title === "Upload file" ? "video/*" : "audio/*"}
+        accept={title === 'Upload file' ? 'video/*' : 'audio/*'}
         onChange={handleFileChange}
-        id={title === "Upload file" ? "video_upload" : "voiceover_upload"}
+        id={title === 'Upload file' ? 'video_upload' : 'voiceover_upload'}
       />
-      <label className="cursor-pointer" htmlFor={title === "Upload file" ? "video_upload" : "voiceover_upload"}>
-        <div className="flex flex-col items-center justify-center rounded-xl bg-white-transparent py-8 px-4">
-          <Image
-            src={image}
-            alt={title}
-            width={80}
-            height={80}
-          />
-          <h3 className="text-lg font-semibold mt-4">{title}</h3>
-          <p className="text-sm text-center mt-2 text-gray-400">{text}</p>
+      <label
+        className="cursor-pointer"
+        htmlFor={title === 'Upload file' ? 'video_upload' : 'voiceover_upload'}
+      >
+        <div
+          className={`flex flex-col items-center justify-center rounded-xl bg-white-transparent ${
+            isVoiceGen ? 'p-4' : 'py-8 px-4'
+          }`}
+        >
+          <Image src={image} alt={title} width={80} height={80} />
+          <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+          <p className="text-gray-400 mt-2 text-center text-sm">{text}</p>
         </div>
       </label>
     </>
