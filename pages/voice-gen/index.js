@@ -4,11 +4,9 @@ import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import DashboardSidebar from '../../components/dashboard/Sidebar';
 import UploadSection from '../../components/dashboard/UploadSection';
-//import VoiceoverUpload from '../../components/dashboard/VoiceoverUpload';
 
 const VoiceoverGenerator = () => {
   const [videoFile, setVideoFile] = useState(null);
-
   const [subtitles, setSubtitles] = useState([]);
 
   const handleFileUpload = (file) => {
@@ -16,7 +14,7 @@ const VoiceoverGenerator = () => {
   };
 
   const handleLanguageChange = (language) => {
-    setTranslatedLanguage(language);
+    // setTranslatedLanguage(language); This function needs to be defined or removed if not used
   };
 
   const handleSubtitlesChange = (subtitles) => {
@@ -24,20 +22,18 @@ const VoiceoverGenerator = () => {
   };
 
   return (
-    <>
-      <div className="flex h-3/4 w-full flex-row">
-        <DashboardSidebar>
-          <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
-        </DashboardSidebar>
+    <div className="flex h-screen w-full flex-row">
+      <DashboardSidebar />
+      <div className="flex w-full">
+        <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
         <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
+        <SubtitleEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} />
       </div>
-      <SubtitleEditor
-        subtitles={subtitles}
-        onSubtitlesChange={handleSubtitlesChange}
-      />
-    </>
+      
+    </div>
   );
 };
 
 VoiceoverGenerator.getLayout = DashboardLayout;
+
 export default VoiceoverGenerator;

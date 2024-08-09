@@ -24,15 +24,18 @@ const SubtitleGenerator = () => {
 
   return (
     <>
-      <div className="flex h-3/4 w-full flex-row">
+      <div className="flex h-1/2 w-full flex-row">
         <DashboardSidebar>
-          <UploadSection
+          
+        </DashboardSidebar>
+        <div className="flex flex-1 flex-row">
+        <UploadSection
             onFileUpload={handleFileUpload}
             onLanguageChange={handleLanguageChange}
           />
-        </DashboardSidebar>
 
         <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
+        </div>
       </div>
       <SubtitleEditor
         subtitles={subtitles}
