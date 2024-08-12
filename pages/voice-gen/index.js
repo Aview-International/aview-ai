@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
-import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
+import VideoEditor from '../../components/dashboard/VideoEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import DashboardSidebar from '../../components/dashboard/Sidebar';
 import UploadSection from '../../components/dashboard/UploadSection';
@@ -22,18 +22,20 @@ const VoiceoverGenerator = () => {
   };
 
   return (
-    <div className="flex h-screen w-full flex-row">
-      <DashboardSidebar />
-      <div className="flex w-full">
-        <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
-        <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
-        <SubtitleEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} />
+    <div className="flex h-screen w-full flex-col">
+      <div className="flex flex-grow overflow-hidden">
+        <DashboardSidebar />
+        <div className="flex flex-col w-full">
+          <div className="flex flex-grow">
+            <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
+            <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
+          </div>
+        </div>
       </div>
-      
+      <VideoEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} />
     </div>
   );
 };
-
 VoiceoverGenerator.getLayout = DashboardLayout;
 
 export default VoiceoverGenerator;

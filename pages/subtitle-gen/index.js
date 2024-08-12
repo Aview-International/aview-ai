@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UploadSection from '../../components/dashboard/UploadSection';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
-import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
+import VideoEditor from '../../components/dashboard/VideoEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import DashboardSidebar from '../../components/dashboard/Sidebar';
 
@@ -23,25 +23,18 @@ const SubtitleGenerator = () => {
   };
 
   return (
-    <>
-      <div className="flex h-1/2 w-full flex-row">
-        <DashboardSidebar>
-          
-        </DashboardSidebar>
-        <div className="flex flex-1 flex-row">
-        <UploadSection
-            onFileUpload={handleFileUpload}
-            onLanguageChange={handleLanguageChange}
-          />
-
-        <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
+    <div className="flex h-screen w-full flex-col">
+      <div className="flex flex-grow overflow-hidden">
+        <DashboardSidebar />
+        <div className="flex flex-col w-full">
+          <div className="flex flex-grow">
+            <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
+            <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
+          </div>
         </div>
       </div>
-      <SubtitleEditor
-        subtitles={subtitles}
-        onSubtitlesChange={handleSubtitlesChange}
-      />
-    </>
+      <VideoEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} />
+    </div>
   );
 };
 
