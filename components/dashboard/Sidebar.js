@@ -3,9 +3,7 @@ import Link from 'next/link';
 import { DASHBOARD_NAVLINKS } from '../../constants/constants';
 import aviewLogo from '../../public/img/aview/logo.svg';
 import signout from '../../public/img/icons/signout.svg';
-import sidebarArrow from '../../public/img/icons/sidebar-arrow.svg';
 import { useRouter } from 'next/router';
-import { logoutUser } from '../../services/firebase';
 
 const DashboardSidebar = () => {
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import VidDownload from '../../components/dashboard/VidDownload';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
+import DashboardSidebar from '../../components/dashboard/Sidebar';
 
 const VideoDownload = () => {
   const [isloaded, setIsLoaded] = useState(true);
