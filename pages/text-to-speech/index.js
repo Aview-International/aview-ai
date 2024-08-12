@@ -6,13 +6,12 @@ import DashboardSidebar from '../../components/dashboard/Sidebar';
 const TextConvert = () => {
   return (
     <div className="h-screen w-full p-6">
-      <div className="h-full w-full rounded-lg flex flex-col justify-center items-center gap-y-8 bg-white-transparent">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-y-8 rounded-lg bg-white-transparent">
         <h1 className="text-5xl font-bold text-white">
           Text to Speech Conversion
         </h1>
         <TextUpload />
       </div>
-    </div>
     </div>
   );
 };

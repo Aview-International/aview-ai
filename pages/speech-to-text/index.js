@@ -2,7 +2,6 @@ import React from 'react';
 import SpeechUpload from '../../components/dashboard/SpeechUpload';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 
-
 const SpeechConvert = () => {
   return (
     <div className="h-screen w-full p-6">
@@ -12,7 +11,6 @@ const SpeechConvert = () => {
         </h1>
         <SpeechUpload />
       </div>
-    </div>
     </div>
   );
 };
