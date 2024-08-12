@@ -11,7 +11,7 @@ const SubtitleEditor = ({ subtitles }) => {
 
   return (
     <div
-      className="h- fixed bottom-0 left-0 right-0 overflow-x-auto whitespace-nowrap bg-white-transparent p-4 text-white"
+      className="h-32 fixed bottom-0 left-48 right-0 overflow-x-auto whitespace-nowrap bg-white-transparent p-4 text-white"
       ref={editorRef}
     >
       <div className="inline-block">

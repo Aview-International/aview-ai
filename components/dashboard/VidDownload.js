@@ -38,7 +38,7 @@ const VidDownload = ({ isLoaded }) => {
   ];
 
   return (
-    <div className="flex h-full flex-col items-center">
+    <div className="flex h-full flex-col items-center text-white">
       <h1
         className={`${
           isLoaded ? 'mt-s10' : 'mt-s24'

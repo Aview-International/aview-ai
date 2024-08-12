@@ -16,7 +16,8 @@ const Button = ({
     <div
       className={`
           ${type === 'primary' && `gradient-1 text-black `}
-          ${type === 'secondary' && `bg-black text-white hover:text-black `}
+          ${type === 'secondary' && `bg-black text-white hover:text-black`}
+          ${type === 'onboard' && `gradient-1 text-white hover:text-black`}
           ${
             type === 'tertiary' &&
             `border-[3px] border-solid border-white bg-transparent text-white hover:bg-white hover:text-black `

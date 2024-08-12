@@ -22,14 +22,15 @@ const VoiceoverGenerator = () => {
   };
 
   return (
-    <div className="flex h-screen w-full flex-row">
-      <DashboardSidebar />
+    <div className="h-screen w-full p-6">
       <div className="flex w-full">
         <UploadSection onFileUpload={handleFileUpload} isVoiceGen={true} />
         <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
-        <SubtitleEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} />
       </div>
-      
+      {/* <SubtitleEditor
+        subtitles={subtitles}
+        onSubtitlesChange={handleSubtitlesChange}
+      /> */}
     </div>
   );
 };

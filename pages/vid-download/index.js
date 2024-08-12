@@ -5,8 +5,10 @@ import DashboardLayout from '../../components/dashboard/DashboardLayout';
 const VideoDownload = () => {
   const [isloaded, setIsLoaded] = useState(true);
   return (
-    <div className="min-h-screen rounded-lg bg-white-transparent">
-      <VidDownload isLoaded={isloaded} />
+    <div className="h-screen w-full p-6">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-y-6 rounded-lg bg-white-transparent">
+        <VidDownload isLoaded={isloaded} />
+      </div>
     </div>
   );
 };

@@ -1474,34 +1474,29 @@ export const AVERAGE_VIDEO_DURATION = [
 
 export const DASHBOARD_NAVLINKS = [
   {
-    text: 'Home',
+    text: 'Subtitle',
     image: home,
-    route: () => '/dashboard',
+    route: () => '/subtitle-gen',
   },
   {
-    text: 'Upload',
+    text: 'voice-gen',
     image: upload,
-    route: () => '/dashboard/upload',
+    route: () => '/voice-gen',
   },
   {
-    text: 'Assistance',
+    text: 'speech-to-text',
     image: assistance,
-    route: () => '/dashboard/chat-assist',
+    route: () => '/speech-to-text',
   },
   {
-    text: 'AI Voice',
+    text: 'text-to-speech',
     image: ai_voice,
-    route: () => '/dashboard/ai-voice',
+    route: () => '/text-to-speech',
   },
   {
-    text: 'History',
+    text: 'vid-dowload',
     image: history,
-    route: () => '/dashboard/history',
-  },
-  {
-    text: 'Settings',
-    image: settings,
-    route: (route) => route,
+    route: () => '/vid-download',
   },
 ];
 

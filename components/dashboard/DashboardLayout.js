@@ -1,10 +1,12 @@
-import Header from './Header';
+import Sidebar from './Sidebar';
 
 const DashboardStructure = ({ children }) => {
   return (
-    <main className="flex max-h-screen w-full flex-col text-white">
-      <Header />
-      <div className={`h-full w-full flex-grow px-4 py-1.5`}>{children}</div>
+    <main className="flex h-screen w-full bg-white-transparent">
+      <Sidebar />
+      <div className="mx-auto w-full items-stretch lg:w-[calc(100%-160px)]">
+        <div className="bg-black/30">{children}</div>
+      </div>
     </main>
   );
 };

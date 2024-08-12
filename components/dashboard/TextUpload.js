@@ -10,9 +10,9 @@ const TextToSpeechInput = () => {
   const [output, setOutput] = useState(false);
 
   return (
-    <div className="h-full w-3/4">
-      <div className="flex h-2/4 flex-col justify-center rounded-xl bg-white-transparent">
-        <div className="p-4">
+    <>
+      <div className="flex h-[55%] w-2/3 flex-col justify-center rounded-lg bg-white-transparent">
+        <div className="px-4">
           <Textarea
             _id={'textarea'}
             onChange={(e) => setInputText(e.target.value)}
@@ -34,12 +34,12 @@ const TextToSpeechInput = () => {
         </div>
       </div>
       {output && (
-        <div className="mt-8 flex items-center justify-center gap-x-6">
+        <div className="mt-5 flex items-center justify-center gap-x-6">
           <Button type="primary">Download speech File</Button>
           <Button type="secondary">Restart</Button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
