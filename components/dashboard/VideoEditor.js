@@ -29,7 +29,7 @@ const VideoEditor = ({ subtitles, onSubtitlesChange }) => {
   };
 
   return (
-    <div className="fixed bottom-0 left-1 right-0 bg-white-transparent text-white">
+    <div className="fixed bottom-0 left-1 right-0 bg-white-transparent text-white ml-40" >
       <div className="flex justify-between items-center px-4 py-2">
         <div className="flex items-center">
           <button className="mr-2">Play</button>

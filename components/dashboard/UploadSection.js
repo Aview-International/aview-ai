@@ -13,17 +13,19 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
   };
   const options = ['English', 'Hindi', 'Spanish', 'Portuguese', 'Arabic'];
   const [payload, setPayload] = useState({
-    originLanguage: 'English',
+    originLanguage: '',
     translatedLanguage: '',
   });
 
   return (
-    <div className="mt-2 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white w-1/3" style={{ height: 'auto', maxHeight: '75vh', maxWidth: '33.333%' }}> {/* Width control added */}
+    <div className="mt-2 w-1/3 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white " style={{ maxHeight: 'calc(100vh - 200px)' }}>
       <h1 className="mb-5 text-xl">
-        {isVoiceGen ? "Multilingual Voiceover Generator" : "Subtitle Generator"}
+        {isVoiceGen ? 'Multilingual Voiceover Generator' : 'Subtitle Generator'}
       </h1>
-      <p className="my-5 pt-3 px-3 text-md text-white">
-        {isVoiceGen ? "How do you want to add your voiceover?" : "Upload your video file"}
+      <p className="mt-5 mb-2 text-sm text-white">
+        {isVoiceGen
+          ? 'How do you want to add your voiceover?'
+          : 'Upload your video file'}
       </p>
 
       {!isVoiceGen ? (
@@ -34,27 +36,29 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
           text="Automatically generate captions based on your video"
         />
       ) : (
-        <div className="flex h-auto w-full flex-row items-center justify-center gap-x-2">
+        <div className="flex h-48 w-full flex-row gap-x-2">
           <ImageSection
             image={Caption}
             handleFileChange={handleFileChange}
             title="Upload voiceover file"
             text="Upload your own voiceover file to be converted into a new language"
+            isVoiceGen={isVoiceGen}
           />
           <ImageSection
             image={Translate}
             handleFileChange={handleFileChange}
             title="Contextual voiceover"
             text="Automatically convert your voiceover to a new language based on your content"
+            isVoiceGen={isVoiceGen}
           />
         </div>
       )}
 
-      <div className="flex flex-col items-start justify-center mt-4">
-        <p className="my-3 py-2 px-4 text-md">
+      <div className="mt-4 flex flex-col items-start justify-center">
+        <p className="py-2 text-sm">
           What language{!isVoiceGen ? 's' : ''} do you want translated?
         </p>
-        <div className="flex w-full flex-row items-center justify-around">
+        <div className="flex w-full flex-row items-center justify-between">
           <CustomSelectInput
             options={options}
             onChange={(option) =>
@@ -63,7 +67,7 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
             value={payload.originLanguage}
             className="mr-2 flex-grow-[2]"
           />
-          <span className="text-white text-4xl">→</span>
+          <span className="text-4xl text-white">→</span>
           <CustomSelectInput
             options={options}
             onChange={(option) =>
@@ -74,7 +78,7 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
             placeholder="Select"
           />
         </div>
-        <div className="mt-6 px-12 py-5 w-full">
+        <div className="mt-6 w-full">
           <Button type="secondary" purpose="onClick" className="w-2">
             {isVoiceGen ? 'Convert' : 'Generate subtitles'}
           </Button>
@@ -84,26 +88,44 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
   );
 };
 
-const ImageSection = ({ image, handleFileChange, title, text }) => {
+const ImageSection = ({
+  image,
+  handleFileChange,
+  title,
+  text,
+  isVoiceGen = false,
+}) => {
   return (
     <>
       <input
         type="file"
         className="hidden"
-        accept={title === "Upload file" ? "video/*" : "audio/*"}
+        accept={title === 'Upload file' ? 'video/*' : 'audio/*'}
         onChange={handleFileChange}
-        id={title === "Upload file" ? "video_upload" : "voiceover_upload"}
+        id={title === 'Upload file' ? 'video_upload' : 'voiceover_upload'}
       />
-      <label className="cursor-pointer" htmlFor={title === "Upload file" ? "video_upload" : "voiceover_upload"}>
-        <div className="flex flex-col items-center justify-center rounded-xl bg-white-transparent py-8 px-4">
-          <Image
-            src={image}
-            alt={title}
-            width={80}
-            height={80}
-          />
-          <h3 className="text-lg font-semibold mt-4">{title}</h3>
-          <p className="text-sm text-center mt-2 text-gray-400">{text}</p>
+      <label
+        className="cursor-pointer"
+        htmlFor={title === 'Upload file' ? 'video_upload' : 'voiceover_upload'}
+      >
+        <div
+          className={`flex flex-col items-center justify-center gap-y-1 rounded-xl bg-white-transparent ${
+            isVoiceGen ? 'py-2.5 px-0.5' : 'py-8 px-2'
+          }`}
+        >
+          <Image src={image} alt={title} width={60} height={80} />
+          <p
+            className={`${isVoiceGen ? 'text-base' : 'text-lg'} font-semibold`}
+          >
+            {title}
+          </p>
+          <p
+            className={`text-white/70 text-center ${
+              isVoiceGen ? 'text-xs' : 'text-sm'
+            }`}
+          >
+            {text}
+          </p>
         </div>
       </label>
     </>

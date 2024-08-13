@@ -5,15 +5,13 @@ import DashboardSidebar from '../../components/dashboard/Sidebar';
 
 const TextConvert = () => {
   return (
-    <div className= "flex h-1/2 w-full flex-row">
-      <DashboardSidebar>
-          </DashboardSidebar>
-    <div className="flex min-h-screen w-full flex-col items-center justify-start rounded-lg bg-white-transparent p-6 pt-s10">
-      <h1 className="mb-11 text-5xl font-bold text-white">
-        Text to Speech Conversion
-      </h1>
-      <TextUpload />
-    </div>
+    <div className="h-screen w-full p-6">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-y-8 rounded-lg bg-white-transparent">
+        <h1 className="text-5xl font-bold text-white">
+          Text to Speech Conversion
+        </h1>
+        <TextUpload />
+      </div>
     </div>
   );
 };

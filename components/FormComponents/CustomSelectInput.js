@@ -13,13 +13,13 @@ const CustomSelectInput = ({
 
   return (
     <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
-      <div className="relative text-xl text-white">
+      <div className="relative text-xl text-white w-40">
         <Border borderRadius="[5px]" classes={"w-full"}>
           <div
             className="flex w-full cursor-pointer items-center justify-between rounded-md bg-black p-1 basis-2/5"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <p className="text-white/70 text-sm mr-4">{value || 'Select'}</p>
+            <p className="text-white/80 text-base">{value || 'Select'}</p>
             <span className={`transition-300 mx-1  ${isOpen && 'rotate-180'}`}>
               <Image src={Arrow} alt="arrow" />
             </span>

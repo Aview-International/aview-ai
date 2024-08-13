@@ -7,7 +7,7 @@ import CustomSelectInput from '../FormComponents/CustomSelectInput';
 
 const AudioPlayer = ({ audioRecord }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isNextPage, setIsNextPage] = useState(false)
+  const [isNextPage, setIsNextPage] = useState(false);
 
   const onPlayClick = () => {};
 
@@ -17,14 +17,14 @@ const AudioPlayer = ({ audioRecord }) => {
         <TranslatePage />
       ) : (
         <>
-          <div className="flex h-[90%] w-full flex-col items-center justify-center gap-y-5">
+          <div className="flex h-[80%] flex-col items-center justify-center gap-y-5 px-6">
             <p>Whisper this</p>
             <p>We gonna get this thing right away for translate!</p>
           </div>
-          <div className="flex h-[10%] w-full items-center justify-between">
+          <div className="flex h-[20%] w-full items-center justify-between">
             <button
               onClick={onPlayClick}
-              className="mr-s3 flex items-center justify-center"
+              className="flex items-center justify-center"
             >
               <Image
                 src={isPlaying ? PauseIcon : PlayIcon}
@@ -47,7 +47,7 @@ const AudioPlayer = ({ audioRecord }) => {
   );
 };
 
-const TranslatePage = ({ voiceText }) => {
+const TranslatePage = () => {
   const fromOptions = ['English', 'Hindi', 'Spanish', 'Portguese', 'Arabic'];
   const toOptions = ['English', 'Hindi', 'Spanish', 'Portguese', 'Arabic'];
   const [payload, setPayload] = useState({
@@ -56,7 +56,7 @@ const TranslatePage = ({ voiceText }) => {
   });
   return (
     <>
-      <div className="h-[90%] w-full border-b border-white/60">
+      <div className="h-[80%] w-full px-6">
         <div className="flex items-center justify-between">
           <CustomSelectInput
             options={fromOptions}
@@ -75,17 +75,13 @@ const TranslatePage = ({ voiceText }) => {
             className="mr-2"
           />
         </div>
-        <div className="flex items-center justify-between gap-x-3 my-3 h-full">
-         <div className='h-[260px] bg-white rounded-lg basis-[45%]'>
-
-         </div>
-         <span className="text-white">→</span>
-         <div className='h-[260px] bg-white rounded-lg basis-[45%]'>
-
-         </div>
+        <div className="flex h-full items-center justify-between gap-x-3">
+          <div className="h-[200px] basis-[45%] rounded-lg bg-white"></div>
+          <span className="text-white">→</span>
+          <div className="h-[200px] basis-[45%] rounded-lg bg-white"></div>
         </div>
       </div>
-      <div className="h-[10%] w-full flex items-center justify-between py-2">
+      <div className="flex h-[20%] w-full items-center justify-between  border-t border-white/60">
         <Button purpose="onClick" type="primary">
           Restart
         </Button>

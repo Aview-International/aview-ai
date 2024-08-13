@@ -1,31 +1,93 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { DASHBOARD_NAVLINKS } from '../../constants/constants';
+import aviewLogo from '../../public/img/aview/logo.svg';
+import signout from '../../public/img/icons/signout.svg';
 import { useRouter } from 'next/router';
 
 const DashboardSidebar = () => {
-  const router = useRouter();
-
-  const navItems = [
-    { path: '/subtitle-gen', icon: '📄', title: 'Subtitle' },
-    { path: '/voice-gen', icon: '🎙️', title: 'Voice' },
-    { path: '/text-to-speech', icon: '🗣️', title: 'TTS' },
-    { path: '/speech-to-text', icon: '📢', title: 'STT' },
-    { path: '/vid-download', icon: '▶️', title: 'Download' },
-  ];
-
   return (
-    <aside className="w- bg-black text-white h-screen flex flex-col mt-11">
-      <nav className="flex flex-col w-full">
-        {navItems.map((item, index) => (
-          <Link href={item.path} key={index}>
-            <a className={`flex items-center w-full py-4 px-4 hover:bg-[#2a2a2a] ${router.pathname === item.path ? 'bg-[#2a2a2a]' : ''}`}>
-              <span className="text-xl mr-3">{item.icon}</span>
-              <span className="text-sm">{item.title}</span>
-            </a>
-          </Link>
-        ))}
-      </nav>
+    <aside
+      className={`relative 
+       hidden h-full w-[160px] pt-s5 text-white lg:block`}
+    >
+      <div className="flex w-full items-center justify-between px-s2">
+        <Image
+          src={aviewLogo}
+          alt="AVIEW International logo"
+          width={70}
+          height={70}
+        />
+      </div>
+      <Navlink />
+      <Signout />
     </aside>
+  );
+};
+
+const Navlink = () => {
+  const { route } = useRouter();
+  return (
+    <div className="mt-s10 mb-s3 w-full text-sm">
+      {DASHBOARD_NAVLINKS.map((link, index) => (
+        <Link
+          href={link.route('/dashboard/settings/profile')}
+          key={`sidebar-link-${index}`}
+        >
+          <a
+            className={`group relative mb-s2.5 flex items-center rounded-[4px] p-s1 hover:bg-[#fcfcfc] hover:bg-opacity-10 ${
+              route === link.route() && 'bg-[#fcfcfc] bg-opacity-10'
+            }`}
+          >
+            <span
+              className={`gradient-1 absolute right-0 top-1/2 block h-4 w-1 -translate-y-1/2 rounded-md group-hover:animate-dropin ${
+                route === link.route()
+                  ? 'visible'
+                  : 'invisible group-hover:visible'
+              }`}
+            ></span>
+            <span
+              className={`mr-5 group-hover:animate-popup ${
+                route === link.route() ? 'animate-popup' : 'brightness-0 invert'
+              }`}
+            >
+              <Image
+                src={link.image}
+                alt={link.text}
+                width={20}
+                height={20}
+                layout="fixed"
+              />
+            </span>
+            <span>{link.text}</span>
+          </a>
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+const Signout = () => {
+  return (
+    <button
+      className={`hover:gradient-dark group absolute bottom-5 flex w-full items-center p-s1 text-sm`}
+    >
+      <span
+        className={`gradient-1 invisible absolute right-0 top-1/2 block h-4 w-1 -translate-y-1/2 rounded-md group-hover:visible group-hover:animate-dropin`}
+      ></span>
+      <span
+        className={`mr-5 brightness-0 invert group-hover:animate-popup group-hover:brightness-100 group-hover:invert-0`}
+      >
+        <Image
+          src={signout}
+          alt={'Sign Out'}
+          width={20}
+          height={20}
+          layout="fixed"
+        />
+      </span>
+      <span>Sign Out</span>
+    </button>
   );
 };
 

@@ -9,52 +9,25 @@ const SpeechUpload = () => {
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    console.log('File uploaded:', file.name);
   };
-  
 
   return (
-    <div className="h-full w-2/3">
-      <div className="flex h-96 w-full flex-col items-center justify-center rounded-xl bg-white-transparent px-6 py-14">
+    <div className="h-3/5 w-[70%] text-white">
+      <div className="flex h-full flex-col justify-center gap-y-5 rounded-xl bg-white-transparent">
         {isRecording ? (
           <RecordAudio />
         ) : (
-          <>
-            <h2 className="m-5 text-center text-xl font-semibold">
-              Record yourself or upload your own audio
-            </h2>
-            <p className="m-5 text-center justify-center w-1/2 text-white/70">
-              Enable mic access, record yourself reading some prompts and
-              generate the sample in different voices
-            </p>
-            <div className="mt-8 flex gap-x-5 justify-center items-center">
-              <Button
-                onClick={() => setIsRecording((isRecording) => !isRecording)}
-                type="primary"
-                purpose="onClick"
-              >
-                Start recording
-              </Button>
-              <label htmlFor="audio_upload">
-                <Button onClick={handleFileUpload} type="secondary">
-                  <span>Upload audio file</span>
-                  <input
-                    type="file"
-                    id="audio_upload"
-                    className="hidden"
-                    accept="audio/*"
-                  />
-                </Button>
-              </label>
-            </div>
-          </>
+          <StartRecording
+            setIsRecording={setIsRecording}
+            handleFileUpload={handleFileUpload}
+          />
         )}
       </div>
     </div>
   );
 };
 
-const RecordAudio = ({  }) => {
+const RecordAudio = () => {
   const [micState, setMicState] = useState('waiting');
   const [audioRecord, setAudioRecord] = useState();
 
@@ -72,7 +45,7 @@ const RecordAudio = ({  }) => {
     getPermissionInitializeRecorder();
   }, []);
   return (
-    <div>
+    <>
       {micState === 'waiting' &&
         toast.error(`Waiting for microphone usage, please allow microphone access to record
           voice sample 🎙️`)}
@@ -81,15 +54,51 @@ const RecordAudio = ({  }) => {
           Unfortunately, we are unable to access the microphone to enable voice
           recording. Please check your privacy settings to allow microphone
           usage 😪🎙️
-        `)}
+          `)}
       {micState === 'allowed' &&
-        toast.success(`Microphone enabled successfully, you can start recording`)}
-      {
-        audioRecord != null ? <AudioPlayer audioRecord={audioRecord}/> : <AudioWave setAudioRecord={setAudioRecord} />
-      }
-      
-    </div>
+        toast.success(
+          `Microphone enabled successfully, you can start recording`
+        )}
+      {audioRecord != null ? (
+        <AudioPlayer audioRecord={audioRecord} />
+      ) : (
+        <AudioWave setAudioRecord={setAudioRecord} />
+      )}
+    </>
   );
 };
 
+const StartRecording = ({ setIsRecording, handleFileUpload }) => {
+  return (
+    <div className='px-6'>
+      <h2 className="text-center text-xl font-semibold">
+        Record yourself or upload your own audio
+      </h2>
+      <p className="mx-auto w-2/3 text-center text-white/60">
+        Enable mic access, record yourself reading some prompts and generate the
+        sample in different voices
+      </p>
+      <div className="mt-8 flex items-center justify-center gap-x-5">
+        <Button
+          onClick={() => setIsRecording((isRecording) => !isRecording)}
+          type="primary"
+          purpose="onClick"
+        >
+          Start recording
+        </Button>
+        <label htmlFor="audio_upload">
+          <Button onClick={handleFileUpload} type="secondary">
+            <span>Upload audio file</span>
+            <input
+              type="file"
+              id="audio_upload"
+              className="hidden"
+              accept="audio/*"
+            />
+          </Button>
+        </label>
+      </div>
+    </div>
+  );
+};
 export default SpeechUpload;
