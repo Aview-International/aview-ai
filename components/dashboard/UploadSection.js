@@ -18,7 +18,7 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
   });
 
   return (
-    <div className="mt-2 w-1/3 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white " style={{ maxHeight: 'calc(100vh - 200px)' }}>
+    <div className="mt-2 w-1/3 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white " style={{ maxHeight: 'calc(95vh - 200px)' }}>
       <h1 className="mb-5 text-xl">
         {isVoiceGen ? 'Multilingual Voiceover Generator' : 'Subtitle Generator'}
       </h1>

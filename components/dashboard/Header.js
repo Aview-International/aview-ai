@@ -6,16 +6,16 @@ import Image from 'next/image';
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between border-b-[1px] bg-transparent py-0.5 px-5 text-white/60">
+    <header className="flex items-center justify-between border-b-[1px] bg-[#fcfcfc] bg-opacity-10 py-0.5 px-5 text-white/60">
       <div className="">
         <Image src={AviewLogo} alt="Logo" width={60} height={60} />
       </div>
       <div className="flex space-x-4 text-white">
         <Link href="/login">
-          <a className="m-3 ">Log in</a>
+          <a className="m-3 mr-4">Log in</a>
         </Link>
         <Link href="/signup">
-          <a className="m-3 ">Sign up</a>
+          <a className="m-3 mr-11">Sign up</a>
         </Link>
         <Button type="primary">Upgrade</Button>
         <Button type="secondary">Done</Button>
