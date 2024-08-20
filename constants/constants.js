@@ -1479,22 +1479,22 @@ export const DASHBOARD_NAVLINKS = [
     route: () => '/subtitle-gen',
   },
   {
-    text: 'voice-gen',
+    text: 'Voiceover',
     image: upload,
     route: () => '/voice-gen',
   },
   {
-    text: 'speech-to-text',
+    text: 'Speech',
     image: assistance,
     route: () => '/speech-to-text',
   },
   {
-    text: 'text-to-speech',
+    text: 'Text',
     image: ai_voice,
     route: () => '/text-to-speech',
   },
   {
-    text: 'vid-dowload',
+    text: 'Download',
     image: history,
     route: () => '/vid-download',
   },

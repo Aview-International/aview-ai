@@ -11,14 +11,7 @@ const DashboardSidebar = () => {
       className={`relative 
        hidden h-full w-[160px] pt-s5 text-white lg:block`}
     >
-      <div className="flex w-full items-center justify-between px-s2">
-        <Image
-          src={aviewLogo}
-          alt="AVIEW International logo"
-          width={70}
-          height={70}
-        />
-      </div>
+      
       <Navlink />
       <Signout />
     </aside>

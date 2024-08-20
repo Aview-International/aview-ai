@@ -3,7 +3,7 @@ import UploadSection from '../../components/dashboard/UploadSection';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
 import VideoEditor from '../../components/dashboard/VideoEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
-import DashboardSidebar from '../../components/dashboard/Sidebar';
+//import DashboardSidebar from '../../components/dashboard/Sidebar';
 
 const SubtitleGenerator = () => {
   const [videoFile, setVideoFile] = useState(null);
