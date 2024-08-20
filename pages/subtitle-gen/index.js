@@ -16,7 +16,7 @@ const SubtitleGenerator = () => {
 
   const handleFileUpload = (file) => {
     setVideoFile(file);
-    setFileName(file.name)
+    setFileName(file.name);
   };
 
   const handleLanguageChange = (type, value) => {
@@ -27,7 +27,7 @@ const SubtitleGenerator = () => {
   };
 
   const getSubtitle = async () => {
-    if (videoFile == null || language.fromLanguage == '' || language.toLanguage == '') {
+    if (videoFile == null) {
       toast.error('Please upload video');
       return;
     }
@@ -35,12 +35,12 @@ const SubtitleGenerator = () => {
       toast.error('Please select languages');
       return;
     }
-    if(language.fromLanguage === language.toLanguage){
-      toast.error('Languages must be different')
-      setLanguage({ ...language,toLanguage:''})
+    if (language.fromLanguage === language.toLanguage) {
+      toast.error('Languages must be different');
+      setLanguage({ ...language, toLanguage: '' });
       return;
     }
-    console.log("loading")
+    console.log('loading');
     // try {
     //   const transcribedText = await getText(videoFile, language);
     //   downloadFile(transcribedText);
@@ -49,9 +49,9 @@ const SubtitleGenerator = () => {
     //   console.log(error.message);
     //   toast.error(error.message);
     // }
-  }
+  };
 
-  const downloadFile = ({output}) => {
+  const downloadFile = ({ output }) => {
     if (!output) {
       toast.error('Something went wrong try again after some time');
       return;

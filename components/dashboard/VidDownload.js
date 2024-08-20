@@ -40,7 +40,6 @@ const VidDownload = () => {
   const [videoUrl, setVideoUrl] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [videoOptions, setVideoOptions] = useState(options);
-  
 
   const handleDownload = async () => {
     if (!videoLink) {
@@ -72,7 +71,7 @@ const VidDownload = () => {
   };
 
   return (
-    <div className="flex h-full flex-col items-center text-white">
+    <div className="flex h-full w-full flex-col items-center text-white">
       <h1
         className={`${
           isLoading ? 'mt-s10' : 'mt-s24'
@@ -80,8 +79,8 @@ const VidDownload = () => {
       >
         YouTube Video Downloader
       </h1>
-      <div className="m-5 flex w-4/5 flex-row items-center justify-center gap-x-5 rounded-xl">
-        <Border borderRadius="md" classes="w-2/3 mb-4 rounded-xl">
+      <div className="m-5 flex w-3/5 flex-row justify-center gap-x-5">
+        <Border borderRadius="md" classes="w-2/3 rounded-xl">
           <div className="h-full rounded-xl bg-black">
             <input
               type="text"
