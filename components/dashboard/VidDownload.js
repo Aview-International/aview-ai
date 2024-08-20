@@ -3,44 +3,44 @@ import Border from '../../components/UI/Border';
 import Button from '../../components/UI/Button';
 import { toast } from 'react-toastify';
 import { getYoutubeVideo } from '../../services/apis';
-
+const options = [
+  {
+    title: 'Audio',
+    optionsArray: [
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+    ],
+  },
+  {
+    title: 'Video',
+    optionsArray: [
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+    ],
+  },
+];
 const VidDownload = () => {
   const [videoLink, setVideoLink] = useState('');
   const [videoUrl, setVideoUrl] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [videoOptions, setVideoOptions] = useState([]);
-  // const options = [
-  //   {
-  //     title: 'Audio',
-  //     optionsArray: [
-  //       {
-  //         type: 'MP3',
-  //         size: '200',
-  //         url: '',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: 'Video',
-  //     optionsArray: [
-  //       {
-  //         type: 'MP3',
-  //         size: '200',
-  //         url: '',
-  //       },
-  //       {
-  //         type: 'MP3',
-  //         size: '200',
-  //         url: '',
-  //       },
-  //       {
-  //         type: 'MP3',
-  //         size: '200',
-  //         url: '',
-  //       },
-  //     ],
-  //   },
-  // ];
+  const [videoOptions, setVideoOptions] = useState(options);
+  
 
   const handleDownload = async () => {
     if (!videoLink) {
@@ -75,20 +75,20 @@ const VidDownload = () => {
     <div className="flex h-full flex-col items-center text-white">
       <h1
         className={`${
-          isLoaded ? 'mt-s10' : 'mt-s24'
+          isLoading ? 'mt-s10' : 'mt-s24'
         } text-5xl font-bold text-white`}
       >
         YouTube Video Downloader
       </h1>
-      <div className="m-5 flex w-3/5 flex-row items-center justify-center gap-x-5 rounded-xl">
+      <div className="m-5 flex w-4/5 flex-row items-center justify-center gap-x-5 rounded-xl">
         <Border borderRadius="md" classes="w-2/3 mb-4 rounded-xl">
-          <div className="h-full w-full rounded-xl bg-black">
+          <div className="h-full rounded-xl bg-black">
             <input
               type="text"
               placeholder="Paste video link here"
               value={videoLink}
               onChange={(e) => setVideoLink(e.target.value)}
-              className="w-full border-none bg-transparent p-4 text-white outline-none"
+              className="border-none bg-transparent p-4 text-white outline-none"
             />
           </div>
         </Border>
@@ -105,7 +105,7 @@ const VidDownload = () => {
             </video>
           </div>
           <div className="flex flex-col items-start justify-center gap-y-3">
-            <TableView options={videoOptions} />
+            <TableView options={options} />
           </div>
         </div>
       )}

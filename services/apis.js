@@ -278,13 +278,13 @@ export const subscriptionHistory = async () =>
 export const deleteThread = async (threadId) =>
   (await axiosInstance.delete(`messages/delete-thread/${threadId}`)).data;
 
-export const getYoutubeVideo = async (videoUrl) =>
-  (await axiosInstance.get(videoUrl)).data;
+// export const getYoutubeVideo = async (videoUrl) =>
+//   (await axiosInstance.get(videoUrl)).data;
 
-export const getText = async ({ inputText, language }) =>
-  (
-    await axiosInstance.post('', {
-      inputText,
-      language,
-    })
-  ).data;
+// export const getText = async ({ inputText, language }) =>
+//   (
+//     await axiosInstance.post('', {
+//       inputText,
+//       language,
+//     })
+//   ).data;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
-import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
+import VideoEditor from '../../components/dashboard/VideoEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import UploadSection from '../../components/dashboard/UploadSection';
 
@@ -23,7 +23,7 @@ const VoiceoverGenerator = () => {
   };
 
   return (
-    <div className="h-screen w-full p-6">
+    <div className="h-screen w-full flex-col p-6">
       <div className="flex w-full">
         <UploadSection
           onFileUpload={handleFileUpload}
@@ -34,14 +34,10 @@ const VoiceoverGenerator = () => {
         />
         <VideoDisplay videoFile={videoFile} />
       </div>
-      {/* <SubtitleEditor
-        subtitles={subtitles}
-        onSubtitlesChange={handleSubtitlesChange}
-      /> */}
+      {/* <VideoEditor /> */}
     </div>
   );
 };
-
 VoiceoverGenerator.getLayout = DashboardLayout;
 
 export default VoiceoverGenerator;

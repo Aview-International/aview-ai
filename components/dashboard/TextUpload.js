@@ -9,7 +9,7 @@ const TextToSpeechInput = () => {
   const options = ['English', 'Hindi', 'Spanish', 'Portguese', 'Arabic'];
   const [inputText, setInputText] = useState('');
   const [language, setLanguage] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState('');
   const [fileUrl, setFileUrl] = useState('');
 

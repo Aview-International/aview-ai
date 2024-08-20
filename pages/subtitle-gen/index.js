@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UploadSection from '../../components/dashboard/UploadSection';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
-import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
+import VideoEditor from '../../components/dashboard/VideoEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import { toast } from 'react-toastify';
 
@@ -82,10 +82,7 @@ const SubtitleGenerator = () => {
         />
         <VideoDisplay videoFile={videoFile} />
       </div>
-      {/* <SubtitleEditor
-        subtitles={subtitles}
-        onSubtitlesChange={handleSubtitlesChange}
-      /> */}
+      {/* <VideoEditor /> */}
     </div>
   );
 };
