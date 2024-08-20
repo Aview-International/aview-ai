@@ -12,8 +12,8 @@ const SpeechUpload = () => {
   };
 
   return (
-    <div className="h-3/5 w-[70%] text-white">
-      <div className="flex h-full flex-col justify-center gap-y-5 rounded-xl bg-white-transparent">
+    <div className="h-3/5 w-full max-w-3xl text-white px-4">
+      <div className="flex h-full flex-col justify-center gap-y-5 rounded-xl bg-white-transparent p-6">
         {isRecording ? (
           <RecordAudio />
         ) : (
@@ -70,7 +70,7 @@ const RecordAudio = () => {
 
 const StartRecording = ({ setIsRecording, handleFileUpload }) => {
   return (
-    <div className='px-6'>
+    <div className="px-6">
       <h2 className="text-center text-xl font-semibold">
         Record yourself or upload your own audio
       </h2>
@@ -78,22 +78,24 @@ const StartRecording = ({ setIsRecording, handleFileUpload }) => {
         Enable mic access, record yourself reading some prompts and generate the
         sample in different voices
       </p>
-      <div className="mt-8 flex items-center justify-center gap-x-5">
+      <div className="mt-8 flex flex-col items-center justify-center gap-y-5 md:flex-row md:gap-x-5">
         <Button
           onClick={() => setIsRecording((isRecording) => !isRecording)}
           type="primary"
           purpose="onClick"
+          className="w-full md:w-auto"
         >
           Start recording
         </Button>
-        <label htmlFor="audio_upload">
-          <Button onClick={handleFileUpload} type="secondary">
+        <label htmlFor="audio_upload" className="w-full md:w-auto">
+          <Button type="secondary" className="w-full md:w-auto">
             <span>Upload audio file</span>
             <input
               type="file"
               id="audio_upload"
               className="hidden"
               accept="audio/*"
+              onChange={handleFileUpload}
             />
           </Button>
         </label>
@@ -101,4 +103,5 @@ const StartRecording = ({ setIsRecording, handleFileUpload }) => {
     </div>
   );
 };
+
 export default SpeechUpload;

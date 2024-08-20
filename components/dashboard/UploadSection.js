@@ -17,12 +17,14 @@ const UploadSection = ({
   getTranscribedText,
 }) => {
   const options = ['English', 'Hindi', 'Spanish', 'Portuguese', 'Arabic'];
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     onFileUpload(file);
   };
+
   return (
-    <div className="mt-2 w-1/3 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white " style={{ maxHeight: 'calc(95vh - 200px)' }}>
+    <div className="mt-2 w-full max-w-md rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white md:w-1/3" style={{ maxHeight: 'calc(95vh - 200px)' }}>
       <h1 className="mb-5 text-xl">
         {isVoiceGen ? 'Multilingual Voiceover Generator' : 'Subtitle Generator'}
       </h1>
@@ -64,19 +66,19 @@ const UploadSection = ({
         <p className="py-2 text-sm">
           What language{!isVoiceGen ? 's' : ''} do you want translated?
         </p>
-        <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between">
           <CustomSelectInput
             options={options}
             onChange={(e) => onLanguageChange('fromLanguage', e)}
             value={languagesArray.fromLanguage}
-            className="mr-2 flex-grow-[2]"
+            className="mr-0 mb-4 flex-grow md:mr-2 md:mb-0 md:flex-grow-[2]"
           />
           <span className="text-4xl text-white">→</span>
           <CustomSelectInput
             options={options}
             onChange={(e) => onLanguageChange('toLanguage', e)}
             value={languagesArray.toLanguage}
-            className="mr-2 flex-grow-[2]"
+            className="mt-4 flex-grow md:mr-2 md:mt-0 md:flex-grow-[2]"
             placeholder="Select"
           />
         </div>
@@ -84,13 +86,12 @@ const UploadSection = ({
           <Button
             type="secondary"
             purpose="onClick"
-            className="w-2"
+            className="w-full md:w-auto"
             onClick={isVoiceGen ? null : getTranscribedText}
           >
             {isVoiceGen ? 'Convert' : 'Generate subtitles'}
           </Button>
         </div>
-        
       </div>
     </div>
   );
