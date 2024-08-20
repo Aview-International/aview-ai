@@ -3,22 +3,70 @@ import UploadSection from '../../components/dashboard/UploadSection';
 import VideoDisplay from '../../components/dashboard/VideoDisplay';
 import SubtitleEditor from '../../components/dashboard/SubtitleEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
+import { toast } from 'react-toastify';
 
 const SubtitleGenerator = () => {
   const [videoFile, setVideoFile] = useState(null);
-  const [translatedLanguage, setTranslatedLanguage] = useState('');
-  const [subtitles, setSubtitles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [fileName, setFileName] = useState('');
+  const [language, setLanguage] = useState({
+    fromLanguage: '',
+    toLanguage: '',
+  });
 
   const handleFileUpload = (file) => {
     setVideoFile(file);
+    setFileName(file.name)
   };
 
-  const handleLanguageChange = (language) => {
-    setTranslatedLanguage(language);
+  const handleLanguageChange = (type, value) => {
+    setLanguage((prevLanguage) => ({
+      ...prevLanguage,
+      [type]: value,
+    }));
   };
 
-  const handleSubtitlesChange = (subtitles) => {
-    setSubtitles(subtitles);
+  const getSubtitle = async () => {
+    if (videoFile == null || language.fromLanguage == '' || language.toLanguage == '') {
+      toast.error('Please upload video');
+      return;
+    }
+    if (language.fromLanguage == '' || language.toLanguage == '') {
+      toast.error('Please select languages');
+      return;
+    }
+    if(language.fromLanguage === language.toLanguage){
+      toast.error('Languages must be different')
+      setLanguage({ ...language,toLanguage:''})
+      return;
+    }
+    console.log("loading")
+    // try {
+    //   const transcribedText = await getText(videoFile, language);
+    //   downloadFile(transcribedText);
+    //   setIsLoading(true);
+    // } catch (error) {
+    //   console.log(error.message);
+    //   toast.error(error.message);
+    // }
+  }
+
+  const downloadFile = ({output}) => {
+    if (!output) {
+      toast.error('Something went wrong try again after some time');
+      return;
+    }
+    const blob = new Blob([output], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `speech_${language}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -26,9 +74,13 @@ const SubtitleGenerator = () => {
       <div className="flex flex-row">
         <UploadSection
           onFileUpload={handleFileUpload}
+          fileName={fileName}
           onLanguageChange={handleLanguageChange}
+          videoFile={videoFile}
+          languagesArray={language}
+          getTranscribedText={getSubtitle}
         />
-        <VideoDisplay videoFile={videoFile} subtitles={subtitles} />
+        <VideoDisplay videoFile={videoFile} />
       </div>
       {/* <SubtitleEditor
         subtitles={subtitles}

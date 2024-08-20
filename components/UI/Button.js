@@ -11,6 +11,7 @@ const Button = ({
   onClick,
   externalLink,
   fullWidth,
+  disabled = false,
 }) => {
   let button = (
     <div
@@ -44,7 +45,7 @@ const Button = ({
       </Link>
     );
   } else if (purpose === 'submit') {
-    button = <button type="submit">{button}</button>;
+    button = <button type="submit" disabled={disabled}>{button}</button>;
   } else if (purpose === 'onClick') {
     button = <div onClick={onClick}>{button}</div>;
   } else if (purpose === 'externalLink') {

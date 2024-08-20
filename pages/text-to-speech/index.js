@@ -1,7 +1,6 @@
 import React from 'react';
 import TextUpload from '../../components/dashboard/TextUpload';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
-import DashboardSidebar from '../../components/dashboard/Sidebar';
 
 const TextConvert = () => {
   return (
