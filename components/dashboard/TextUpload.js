@@ -2,12 +2,74 @@ import React, { useState } from 'react';
 import Button from '../../components/UI/Button';
 import Textarea from '../FormComponents/Textarea';
 import CustomSelectInput from '../FormComponents/CustomSelectInput';
+import { getText } from '../../services/apis';
+import { toast } from 'react-toastify';
 
 const TextToSpeechInput = () => {
   const options = ['English', 'Hindi', 'Spanish', 'Portguese', 'Arabic'];
   const [inputText, setInputText] = useState('');
-  const [language, setLanguage] = useState();
-  const [output, setOutput] = useState(false);
+  const [language, setLanguage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [output, setOutput] = useState('');
+  const [fileUrl, setFileUrl] = useState('');
+
+  const isValidText = (text) => {
+    const regex = /^[A-Za-z]+(\s[A-Za-z]+)+$/;
+    return regex.test(text);
+  };
+
+  const trasnlateText = async () => {
+    if (inputText.length == 0) {
+      toast.error('Please ente the text');
+      return;
+    }
+    if (language == '') {
+      toast.error('Please select a language');
+      return;
+    }
+    if (isValidText(inputText)) {
+      console.log('Valid input:', inputText);
+      // try {
+      //   const translatedText = await getText(inputText, language);
+      //   setOutput(translatedText);
+      //   setLoading(true);
+      //   setInputText('');
+      // } catch (error) {
+      //   console.log(error.message);
+      //   toast.error(error.message);
+      // }
+    } else {
+      toast.error(
+        'Input should contain only alphabets and must have more than one word.'
+      );
+    }
+  };
+
+  const handleRestart = () => {
+    setInputText('');
+    setOutput('');
+    setFileUrl('');
+    setLanguage('');
+  };
+
+  const downloadFile = () => {
+    console.log('button clicked');
+    // if (!output) {
+    //   toast.error('Something went wrong try again after some time');
+    //   return;
+    // }
+    // const blob = new Blob([output], { type: 'text/plain' });
+    // const url = URL.createObjectURL(blob);
+
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.download = `speech_${language}.txt`;
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
+
+    // URL.revokeObjectURL(url);
+  };
 
   return (
     <>
@@ -27,16 +89,27 @@ const TextToSpeechInput = () => {
           <CustomSelectInput
             options={options}
             value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            onChange={(e) => setLanguage(e)}
             className="mr-2 flex-grow-[2]"
           />
-          <Button>Convert</Button>
+          <Button purpose="onClick" onClick={trasnlateText}>
+            Convert
+          </Button>
         </div>
       </div>
-      {output && (
+      {loading && (
         <div className="mt-5 flex items-center justify-center gap-x-6">
-          <Button type="primary">Download speech File</Button>
-          <Button type="secondary">Restart</Button>
+          <Button
+            type="primary"
+            purpose="onClick"
+            onChange={downloadFile}
+            disabled={!loading}
+          >
+            Download speech File
+          </Button>
+          <Button type="secondary" purpose="onClick" onClick={handleRestart}>
+            Restart
+          </Button>
         </div>
       )}
     </>

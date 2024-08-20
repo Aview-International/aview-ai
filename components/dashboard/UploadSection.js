@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Button from '../../components/UI/Button';
 import UploadIcon from '../../public/img/icons/upload.svg';
+import Complete from '../../public/img/icons/complete.svg';
 import Caption from '../../public/img/icons/Caption.svg';
 import Translate from '../../public/img/icons/Translate.svg';
 import CustomSelectInput from '../FormComponents/CustomSelectInput';
 
-const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
+const UploadSection = ({
+  onFileUpload,
+  fileName,
+  isVoiceGen = false,
+  onLanguageChange,
+  videoFile,
+  languagesArray,
+  getTranscribedText,
+}) => {
+  const options = ['English', 'Hindi', 'Spanish', 'Portuguese', 'Arabic'];
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     onFileUpload(file);
   };
-  const options = ['English', 'Hindi', 'Spanish', 'Portuguese', 'Arabic'];
-  const [payload, setPayload] = useState({
-    originLanguage: '',
-    translatedLanguage: '',
-  });
-
   return (
     <div className="mt-2 w-1/3 rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white " style={{ maxHeight: 'calc(95vh - 200px)' }}>
       <h1 className="mb-5 text-xl">
@@ -27,13 +31,16 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
           ? 'How do you want to add your voiceover?'
           : 'Upload your video file'}
       </p>
-
       {!isVoiceGen ? (
         <ImageSection
-          image={UploadIcon}
+          image={videoFile != null ? Complete : UploadIcon}
           handleFileChange={handleFileChange}
-          title="Upload file"
-          text="Automatically generate captions based on your video"
+          title={videoFile != null ? `${fileName}` : 'Upload file'}
+          text={
+            videoFile != null
+              ? 'Your video has been uploaded successfully'
+              : 'Automatically generate captions based on your video'
+          }
         />
       ) : (
         <div className="flex h-48 w-full flex-row gap-x-2">
@@ -53,7 +60,6 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
           />
         </div>
       )}
-
       <div className="mt-4 flex flex-col items-start justify-center">
         <p className="py-2 text-sm">
           What language{!isVoiceGen ? 's' : ''} do you want translated?
@@ -61,28 +67,30 @@ const UploadSection = ({ onFileUpload, isVoiceGen = false }) => {
         <div className="flex w-full flex-row items-center justify-between">
           <CustomSelectInput
             options={options}
-            onChange={(option) =>
-              setPayload({ ...payload, originLanguage: option })
-            }
-            value={payload.originLanguage}
+            onChange={(e) => onLanguageChange('fromLanguage', e)}
+            value={languagesArray.fromLanguage}
             className="mr-2 flex-grow-[2]"
           />
           <span className="text-4xl text-white">→</span>
           <CustomSelectInput
             options={options}
-            onChange={(option) =>
-              setPayload({ ...payload, translatedLanguage: option })
-            }
-            value={payload.translatedLanguage}
+            onChange={(e) => onLanguageChange('toLanguage', e)}
+            value={languagesArray.toLanguage}
             className="mr-2 flex-grow-[2]"
             placeholder="Select"
           />
         </div>
         <div className="mt-6 w-full">
-          <Button type="secondary" purpose="onClick" className="w-2">
+          <Button
+            type="secondary"
+            purpose="onClick"
+            className="w-2"
+            onClick={isVoiceGen ? null : getTranscribedText}
+          >
             {isVoiceGen ? 'Convert' : 'Generate subtitles'}
           </Button>
         </div>
+        
       </div>
     </div>
   );
@@ -120,7 +128,7 @@ const ImageSection = ({
             {title}
           </p>
           <p
-            className={`text-white/70 text-center ${
+            className={`text-center text-white/70 ${
               isVoiceGen ? 'text-xs' : 'text-sm'
             }`}
           >

@@ -9,7 +9,7 @@ const DashboardSidebar = () => {
   return (
     <aside
       className={`relative 
-       hidden h-full w-[160px] pt-s5 text-white lg:block`}
+       h-full w-[160px] pt-s5 text-white`}
     >
       
       <Navlink />

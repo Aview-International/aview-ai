@@ -1,72 +1,108 @@
 import React, { useState } from 'react';
 import Border from '../../components/UI/Border';
 import Button from '../../components/UI/Button';
-
-const VidDownload = ({ isLoaded }) => {
+import { toast } from 'react-toastify';
+import { getYoutubeVideo } from '../../services/apis';
+const options = [
+  {
+    title: 'Audio',
+    optionsArray: [
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+    ],
+  },
+  {
+    title: 'Video',
+    optionsArray: [
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+      {
+        type: 'MP3',
+        size: '200',
+        url: '',
+      },
+    ],
+  },
+];
+const VidDownload = () => {
   const [videoLink, setVideoLink] = useState('');
-  const options = [
-    {
-      title: 'Audio',
-      optionsArray: [
+  const [videoUrl, setVideoUrl] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [videoOptions, setVideoOptions] = useState(options);
+
+  const handleDownload = async () => {
+    if (!videoLink) {
+      toast.error('Enter the url to download');
+      return;
+    }
+    try {
+      const videoData = await getYoutubeVideo(videoLink);
+      const videoBlob = await videoData.blob();
+      const videoObjectUrl = URL.createObjectURL(videoBlob);
+      setVideoUrl(videoObjectUrl);
+      const videoOptions = videoData.videoOptions;
+      setVideoOptions([
         {
-          type: 'MP3',
-          size: '200',
-          url: '',
-        },
-      ],
-    },
-    {
-      title: 'Video',
-      optionsArray: [
-        {
-          type: 'MP3',
-          size: '200',
-          url: '',
-        },
-        {
-          type: 'MP3',
-          size: '200',
-          url: '',
+          title: 'Video',
+          optionsArray: videoOptions.filter((option) => option.type === 'MP4'),
         },
         {
-          type: 'MP3',
-          size: '200',
-          url: '',
+          title: 'Audio',
+          optionsArray: videoOptions.filter((option) => option.type === 'MP3'),
         },
-      ],
-    },
-  ];
+      ]);
+      setIsLoading(true);
+      setVideoLink('');
+    } catch (e) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
+  };
 
   return (
-    <div className="flex h-full flex-col items-center text-white">
+    <div className="flex h-full w-full flex-col items-center text-white">
       <h1
         className={`${
-          isLoaded ? 'mt-s10' : 'mt-s24'
+          isLoading ? 'mt-s10' : 'mt-s24'
         } text-5xl font-bold text-white`}
       >
         YouTube Video Downloader
       </h1>
-
-      <div className="m-5 flex w-3/5 flex-row items-center justify-center gap-x-5 rounded-xl">
-        <Border borderRadius="md" classes="w-2/3 mb-4 rounded-xl">
-          <div className="h-full w-full rounded-xl bg-black">
+      <div className="m-5 flex w-3/5 flex-row justify-center gap-x-5">
+        <Border borderRadius="md" classes="w-2/3 rounded-xl">
+          <div className="h-full rounded-xl bg-black">
             <input
               type="text"
               placeholder="Paste video link here"
               value={videoLink}
               onChange={(e) => setVideoLink(e.target.value)}
-              className="w-full border-none bg-transparent p-4 text-white outline-none"
+              className="border-none bg-transparent p-4 text-white outline-none"
             />
           </div>
         </Border>
-
-        <Button type="primary" onClick={() => console.log('Downloading...')}>
+        <Button type="primary" onClick={handleDownload}>
           Download
         </Button>
       </div>
-      {isLoaded && (
+      {isLoading && (
         <div className="mt-s4 flex w-full flex-row items-start justify-center gap-x-10">
-          <div className="h-80 w-[540px] rounded-lg bg-white"></div>
+          <div className="h-80 w-[540px] rounded-lg bg-white">
+            <video controls className="h-full w-full">
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
           <div className="flex flex-col items-start justify-center gap-y-3">
             <TableView options={options} />
           </div>
