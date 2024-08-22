@@ -1,17 +1,15 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { DASHBOARD_NAVLINKS } from '../../constants/constants';
-import aviewLogo from '../../public/img/aview/logo.svg';
 import signout from '../../public/img/icons/signout.svg';
 import { useRouter } from 'next/router';
 
 const DashboardSidebar = () => {
   return (
     <aside
-      className={`relative 
-       h-full w-[160px] pt-s5 text-white`}
+      className={`relative hidden w-[160px] bg-white-transparent pt-s5 text-white md:block`}
     >
-      
       <Navlink />
       <Signout />
     </aside>

@@ -16,11 +16,6 @@ const SubtitleGenerator = () => {
     toLanguage: '',
   });
 
-  const handleFileUpload = (file) => {
-    setVideoFile(file);
-    setFileName(file.name);
-  };
-
   const handleLanguageChange = (type, value) => {
     setLanguage((prevLanguage) => ({
       ...prevLanguage,
@@ -76,19 +71,24 @@ const SubtitleGenerator = () => {
   };
 
   return (
-    <div className="h-screen w-full flex-col p-6">
-      <div className="flex flex-row">
+    <div className="w-full flex-col p-3">
+      <div className="flex flex-col items-center justify-center md:flex-row">
         <UploadSection
-          onFileUpload={handleFileUpload}
+          handleFileName={setFileName}
           fileName={fileName}
           onLanguageChange={handleLanguageChange}
           videoFile={videoFile}
           languagesArray={language}
           getTranscribedText={getSubtitle}
+          handleVideo={setVideoFile}
         />
-        <VideoDisplay videoFile={videoFile} subtitles={subtitles} videoRef={videoRef} />
+        <VideoDisplay
+          videoFile={videoFile}
+          // subtitles={subtitles}
+          // videoRef={videoRef}
+          handleVideo={setVideoFile}
+        />
       </div>
-       {/* <VideoEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} videoRef={videoRef} /> */}
     </div>
   );
 };

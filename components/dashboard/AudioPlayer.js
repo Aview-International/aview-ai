@@ -17,7 +17,7 @@ const AudioPlayer = ({ audioRecord }) => {
         <TranslatePage />
       ) : (
         <>
-          <div className="flex h-[80%] flex-col items-center justify-center gap-y-5 px-6">
+          <div className="flex h-[90%] flex-col items-center justify-center gap-y-5 px-6">
             <p>Whisper this</p>
             <p>We gonna get this thing right away for translate!</p>
           </div>
@@ -56,7 +56,7 @@ const TranslatePage = () => {
   });
   return (
     <>
-      <div className="h-[80%] w-full px-6">
+      <div className="h-full w-full p-3">
         <div className="flex items-center justify-between">
           <CustomSelectInput
             options={fromOptions}
@@ -75,13 +75,13 @@ const TranslatePage = () => {
             className="mr-2"
           />
         </div>
-        <div className="flex h-full items-center justify-between gap-x-3">
-          <div className="h-[200px] basis-[45%] rounded-lg bg-white"></div>
-          <span className="text-white">→</span>
-          <div className="h-[200px] basis-[45%] rounded-lg bg-white"></div>
+        <div className="flex h-full items-center justify-center gap-x-3">
+          <div className="max-h-[250px] min-h-[180px] basis-[45%] rounded-lg bg-white"></div>
+          <p className="text-5xl text-white">→</p>
+          <div className="max-h-[250px] min-h-[180px] basis-[45%] rounded-lg bg-white"></div>
         </div>
       </div>
-      <div className="flex h-[20%] w-full items-center justify-between  border-t border-white/60">
+      <div className="flex h-[20%] w-full items-center justify-between border-t border-white/60 pt-10">
         <Button purpose="onClick" type="primary">
           Restart
         </Button>

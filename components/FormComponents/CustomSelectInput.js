@@ -13,7 +13,7 @@ const CustomSelectInput = ({
 
   return (
     <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
-      <div className="relative text-xl text-white w-40">
+      <div className="relative text-xl text-white min-w-[128px] md:min-w-[150px]">
         <Border borderRadius="[5px]" classes={"w-full"}>
           <div
             className="flex w-full cursor-pointer items-center justify-between rounded-md bg-black p-1 basis-2/5"
@@ -48,7 +48,7 @@ const Options = ({ isOpen, options, setIsOpen, onChange }) => {
       <div className="gradient-1 rounded-[5px]">
         {options.map((option, i) => (
           <p
-            className="my-1 cursor-pointer bg-black p-1 text-xs"
+            className="my-1 cursor-pointer bg-black p-1 text-base"
             key={`option-${i}`}
             onClick={() => {
               onChange(option);

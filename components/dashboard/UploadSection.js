@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Button from '../../components/UI/Button';
 import UploadIcon from '../../public/img/icons/upload.svg';
@@ -6,29 +6,26 @@ import Complete from '../../public/img/icons/complete.svg';
 import Caption from '../../public/img/icons/Caption.svg';
 import Translate from '../../public/img/icons/Translate.svg';
 import CustomSelectInput from '../FormComponents/CustomSelectInput';
+import { toast } from 'react-toastify';
 
 const UploadSection = ({
-  onFileUpload,
+  handleFileName,
   fileName,
   isVoiceGen = false,
   onLanguageChange,
   videoFile,
   languagesArray,
   getTranscribedText,
+  handleVideo,
 }) => {
   const options = ['English', 'Hindi', 'Spanish', 'Portuguese', 'Arabic'];
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    onFileUpload(file);
-  };
-
   return (
-    <div className="mt-2 w-full max-w-md rounded-xl bg-white-transparent px-3 pt-3 pb-s10 text-white md:w-1/3" style={{ maxHeight: 'calc(95vh - 200px)' }}>
-      <h1 className="mb-5 text-xl">
+    <div className="mt-2 w-full max-w-md rounded-xl bg-white-transparent px-3 pt-3 pb-s8 text-white md:w-1/3">
+      <h1 className="mb-5 text-lg">
         {isVoiceGen ? 'Multilingual Voiceover Generator' : 'Subtitle Generator'}
       </h1>
-      <p className="mt-5 mb-2 text-sm text-white">
+      <p className="mt-5 mb-2 text-white">
         {isVoiceGen
           ? 'How do you want to add your voiceover?'
           : 'Upload your video file'}
@@ -36,44 +33,47 @@ const UploadSection = ({
       {!isVoiceGen ? (
         <ImageSection
           image={videoFile != null ? Complete : UploadIcon}
-          handleFileChange={handleFileChange}
           title={videoFile != null ? `${fileName}` : 'Upload file'}
           text={
             videoFile != null
               ? 'Your video has been uploaded successfully'
               : 'Automatically generate captions based on your video'
           }
+          handleVideo={handleVideo}
+          handleFileName={handleFileName}
         />
       ) : (
         <div className="flex h-48 w-full flex-row gap-x-2">
           <ImageSection
             image={Caption}
-            handleFileChange={handleFileChange}
+            handleFileName={handleFileName}
             title="Upload voiceover file"
             text="Upload your own voiceover file to be converted into a new language"
             isVoiceGen={isVoiceGen}
+            handleVideo={handleVideo}
           />
           <ImageSection
             image={Translate}
-            handleFileChange={handleFileChange}
+            handleFileName={handleFileName}
             title="Contextual voiceover"
             text="Automatically convert your voiceover to a new language based on your content"
             isVoiceGen={isVoiceGen}
+            handleVideo={handleVideo}
           />
         </div>
       )}
       <div className="mt-4 flex flex-col items-start justify-center">
-        <p className="py-2 text-sm">
+        <p className="py-2">
           What language{!isVoiceGen ? 's' : ''} do you want translated?
         </p>
-        <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between">
+        <div className="flex w-full flex-row items-center justify-between md:gap-x-2">
           <CustomSelectInput
             options={options}
             onChange={(e) => onLanguageChange('fromLanguage', e)}
             value={languagesArray.fromLanguage}
             className="mr-0 mb-4 flex-grow md:mr-2 md:mb-0 md:flex-grow-[2]"
           />
-          <span className="text-4xl text-white">→</span>
+          <span className="text-3xl text-white">→</span>
           <CustomSelectInput
             options={options}
             onChange={(e) => onLanguageChange('toLanguage', e)}
@@ -99,18 +99,81 @@ const UploadSection = ({
 
 const ImageSection = ({
   image,
-  handleFileChange,
+  handleFileName,
   title,
   text,
   isVoiceGen = false,
+  handleVideo,
 }) => {
+  const [isFileDragging, setIsFileDragging] = useState(false);
+  const dropZoneRef = useRef(null);
+
+  const handleVideoUpload = (file) => {
+    handleVideo(file);
+    handleFileName(file.name);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    try {
+      if (files && files.length == 1) {
+        const file = files[0];
+        if (file.type.startsWith('video/')) {
+          handleVideoUpload(file);
+        } else {
+          throw new Error('Please submit a video file.');
+        }
+      } else {
+        throw new Error('Please submit a single video file.');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    const dropZone = dropZoneRef.current;
+    const handleDragOver = (e) => {
+      e.preventDefault(); // Prevent default behavior to allow drop
+      setIsFileDragging(true);
+    };
+
+    const handleDragLeave = (e) => {
+      e.preventDefault();
+      setIsFileDragging(false);
+    };
+
+    const handleDrop = (e) => {
+      e.preventDefault(); // Prevent default behavior to handle the file drop in JavaScript
+      setIsFileDragging(false);
+    };
+
+    if (dropZone) {
+      dropZone.addEventListener('dragover', handleDragOver);
+      dropZone.addEventListener('dragleave', handleDragLeave);
+      dropZone.addEventListener('drop', handleDrop);
+
+      // Remove event listeners on cleanup
+      return () => {
+        dropZone.removeEventListener('dragover', handleDragOver);
+        dropZone.removeEventListener('dragleave', handleDragLeave);
+        dropZone.removeEventListener('drop', handleDrop);
+      };
+    }
+  }, []);
+
   return (
-    <>
+    <div onDragOver={handleDragOver} onDrop={handleDrop}>
       <input
         type="file"
         className="hidden"
         accept={title === 'Upload file' ? 'video/*' : 'audio/*'}
-        onChange={handleFileChange}
+        onChange={(e) => handleVideoUpload(e.target.files[0])}
         id={title === 'Upload file' ? 'video_upload' : 'voiceover_upload'}
       />
       <label
@@ -124,20 +187,22 @@ const ImageSection = ({
         >
           <Image src={image} alt={title} width={60} height={80} />
           <p
-            className={`${isVoiceGen ? 'text-base' : 'text-lg'} font-semibold`}
+            className={`${
+              isVoiceGen ? 'text-[10px] lg:text-[14px]' : 'text-[18px]'
+            } text-center font-semibold`}
           >
             {title}
           </p>
           <p
-            className={`text-center text-white/70 ${
-              isVoiceGen ? 'text-xs' : 'text-sm'
+            className={`text-center text-white/70 md:text-center ${
+              isVoiceGen ? 'text-[12px] md:text-xs' : 'text-sm'
             }`}
           >
             {text}
           </p>
         </div>
       </label>
-    </>
+    </div>
   );
 };
 

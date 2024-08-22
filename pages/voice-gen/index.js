@@ -15,6 +15,10 @@ const VoiceoverGenerator = () => {
     setVideoFile(file);
   };
 
+  const handleFileRemove = () => {
+    setVideoFile(null);
+  };
+
   const handleLanguageChange = (type, value) => {
     setLanguage((prevLanguage) => ({
       ...prevLanguage,
@@ -23,16 +27,16 @@ const VoiceoverGenerator = () => {
   };
 
   return (
-    <div className="h-screen w-full flex-col p-6">
-      <div className="flex w-full">
+    <div className="w-full flex-col p-3">
+      <div className="flex flex-col items-center justify-center md:flex-row">
         <UploadSection
-          onFileUpload={handleFileUpload}
+          onFileUpload={setVideoFile}
           isVoiceGen={true}
           onLanguageChange={handleLanguageChange}
           videoFile={videoFile}
           languagesArray={language}
         />
-        <VideoDisplay videoFile={videoFile} />
+        <VideoDisplay videoFile={videoFile} setVideoFile={setVideoFile} />
       </div>
       {/* <VideoEditor subtitles={subtitles} onSubtitlesChange={handleSubtitlesChange} videoRef={videoRef} /> */}
     </div>

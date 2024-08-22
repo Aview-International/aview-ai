@@ -73,8 +73,8 @@ const TextToSpeechInput = () => {
 
   return (
     <>
-      <div className="flex h-[55%] w-2/3 flex-col justify-center rounded-lg bg-white-transparent">
-        <div className="px-4">
+      <div className="flex h-[50%] w-[95%] flex-col justify-center rounded-lg bg-white-transparent md:w-2/3 ">
+        <div className="px-2 md:px-4">
           <Textarea
             _id={'textarea'}
             onChange={(e) => setInputText(e.target.value)}

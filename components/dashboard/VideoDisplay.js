@@ -1,17 +1,27 @@
-const VideoDisplay = ({ videoFile }) => {
+import Image from 'next/image';
+import deleteIcon from '../../public/img/icons/close.svg';
+
+const VideoDisplay = ({ videoFile, handleVideo }) => {
   return (
-    <section className="ml-4 h-full w-2/3 text-white">
-      <h2 className="mt-2 text-lg text-white/70">Project Name</h2>
-      <div className="relative mt-s3 flex h-[420px] w-full items-center justify-center rounded-lg bg-white">
-        <div className="absolute top-1/2 left-1/2 flex h-full w-auto -translate-x-1/2 -translate-y-1/2 transform items-center justify-center">
-          {videoFile && (
-            <video
-              controls
-              className="h-full object-contain"
-              src={URL.createObjectURL(videoFile)}
-            />
-          )}
-        </div>
+    <section className="mx-auto flex h-full w-full items-center justify-center text-white">
+      <div className="relative my-s3 flex h-[420px] w-[96%] items-center justify-center rounded-lg bg-white">
+        {videoFile && (
+          <>
+            <div className="relative flex h-full w-auto items-center justify-center">
+              <video
+                // controls
+                className="h-full object-contain"
+                src={URL.createObjectURL(videoFile)}
+              />
+              <button
+                className="absolute top-2 right-2 flex cursor-pointer items-center justify-center rounded-full bg-gray-1 p-2 text-white"
+                onClick={() => handleVideo(null)}
+              >
+                <Image src={deleteIcon} width={10} height={10} />
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

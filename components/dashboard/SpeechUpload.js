@@ -12,8 +12,8 @@ const SpeechUpload = () => {
   };
 
   return (
-    <div className="h-3/5 w-full max-w-3xl text-white px-4">
-      <div className="flex h-full flex-col justify-center gap-y-5 rounded-xl bg-white-transparent p-6">
+    <div className="h-3/5 md:w-4/5 w-full text-white px-4">
+      <div className="flex h-full flex-col justify-center items-center gap-y-5 rounded-xl bg-white-transparent">
         {isRecording ? (
           <RecordAudio />
         ) : (
@@ -70,25 +70,25 @@ const RecordAudio = () => {
 
 const StartRecording = ({ setIsRecording, handleFileUpload }) => {
   return (
-    <div className="px-6">
+    <div className="px-3 md:px-6">
       <h2 className="text-center text-xl font-semibold">
         Record yourself or upload your own audio
       </h2>
-      <p className="mx-auto w-2/3 text-center text-white/60">
+      <p className="w-full md:w-2/4 mx-auto md:mt-2 mt-4 text-center text-white/60">
         Enable mic access, record yourself reading some prompts and generate the
         sample in different voices
       </p>
-      <div className="mt-8 flex flex-col items-center justify-center gap-y-5 md:flex-row md:gap-x-5">
+      <div className="mt-4 md:mt-8 flex flex-col items-center justify-center gap-y-5 md:flex-row md:gap-x-5">
         <Button
           onClick={() => setIsRecording((isRecording) => !isRecording)}
           type="primary"
           purpose="onClick"
-          className="w-full md:w-auto"
+          className="w-full"
         >
           Start recording
         </Button>
-        <label htmlFor="audio_upload" className="w-full md:w-auto">
-          <Button type="secondary" className="w-full md:w-auto">
+        <label htmlFor="audio_upload">
+          <Button type="secondary">
             <span>Upload audio file</span>
             <input
               type="file"
