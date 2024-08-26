@@ -11,12 +11,14 @@ const Button = ({
   onClick,
   externalLink,
   fullWidth,
+  disabled = false,
 }) => {
   let button = (
     <div
       className={`
           ${type === 'primary' && `gradient-1 text-black `}
-          ${type === 'secondary' && `bg-black text-white hover:text-black `}
+          ${type === 'secondary' && `bg-black text-white hover:text-black`}
+          ${type === 'onboard' && `gradient-1 text-white hover:text-black`}
           ${
             type === 'tertiary' &&
             `border-[3px] border-solid border-white bg-transparent text-white hover:bg-white hover:text-black `
@@ -43,7 +45,7 @@ const Button = ({
       </Link>
     );
   } else if (purpose === 'submit') {
-    button = <button type="submit">{button}</button>;
+    button = <button type="submit" disabled={disabled}>{button}</button>;
   } else if (purpose === 'onClick') {
     button = <div onClick={onClick}>{button}</div>;
   } else if (purpose === 'externalLink') {

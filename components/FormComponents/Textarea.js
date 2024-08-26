@@ -27,10 +27,12 @@ const Textarea = ({
   textBlack,
 }) => {
   return (
-    <div className="relative mb-s5 w-full text-lg">
-      <label htmlFor={_id} className={`mb-s1 block w-full`}>
-        {label}
-      </label>
+    <div className="relative mb-1 w-full text-lg">
+      {label && (
+        <label htmlFor={_id} className={`mb-s1 block w-full`}>
+          {label}
+        </label>
+      )}
       <div>
         <Border classes="w-full relative" borderRadius="[5px]">
           <textarea
@@ -38,7 +40,7 @@ const Textarea = ({
             name={name}
             type="text"
             placeholder={placeholder}
-            className={`peer block min-h-[120px] w-full resize-none rounded-[5px] px-s2 py-2 text-white focus:outline-none ${
+            className={`peer block min-h-[250px] w-full resize-none rounded-[5px] px-s1 py-2 text-white focus:outline-none ${
               bgColor ? bgColor : 'bg-black'
             } ${textBlack ? 'text-black' : 'text-white'}`}
             onChange={onChange}

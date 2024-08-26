@@ -1,78 +1,18 @@
-import { useEffect, useState } from 'react';
-import FullScreenLoader from '../../public/loaders/FullScreenLoader';
-import DashBoardHeader from './Header';
-import DashboardSidebar from './Sidebar';
-import useUserProfile from '../../hooks/useUserProfile';
-import DashboardGradient from '../UI/DashboardGradient';
-import { useDispatch, useSelector } from 'react-redux';
-import { useSocket } from '../../socket';
-import Cookies from 'js-cookie';
-import {
-  setIncomingMessages,
-  setNewMessageDot,
-} from '../../store/reducers/messages.reducer';
-import { useRouter } from 'next/router';
+import React from 'react';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
-// this component fetches user profile
-export const DashboardContainer = ({ children }) => {
-  // const getProfile = useUserProfile();
-  const { isLoading } = useUserProfile();
-
-  return isLoading ? (
-    <FullScreenLoader />
-  ) : (
-    <DashboardGradient>{children}</DashboardGradient>
-  );
-};
-
-// this component renders the dashboard structure
 const DashboardStructure = ({ children }) => {
-  const socket = useSocket();
-  const uid = Cookies.get('uid');
-  const dispatch = useDispatch();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (uid) {
-      socket.auth = { userId: uid };
-      socket.on('connect', () => {
-        return;
-      });
-
-      socket.on('new_message', (message) => {
-        dispatch(setIncomingMessages(message));
-        if (router.pathname !== '/dashboard/messages')
-          dispatch(setNewMessageDot(false));
-      });
-    }
-    return () => {
-      socket.disconnect();
-    };
-  }, [uid]);
-
-  const [isOpen, setIsOpen] = useState(true);
-  const userInfo = useSelector((state) => state.user);
-
   return (
-    <DashboardContainer>
-      <main className="flex h-screen w-full bg-white-transparent">
-        <DashboardSidebar
-          userInfo={userInfo}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-        />
-        <div
-          className={`ml-auto flex w-full flex-col items-stretch ${
-            isOpen ? 'lg:w-[calc(100%-190px)]' : 'lg:w-[calc(100%-80px)]'
-          }`}
-        >
-          <DashBoardHeader userInfo={userInfo} />
-          <div className="mx-auto h-full w-full self-stretch overflow-y-auto bg-black/60 p-s3 text-white md:p-s4">
-            {children}
-          </div>
+    <div className="h-screen overflow-y-auto">
+      <Header />
+      <main className="flex h-[calc(100vh-73px)] w-full bg-black">
+        <Sidebar />
+        <div className="mx-auto w-full flex-1 items-stretch lg:w-[calc(100%-160px)]">
+          <div className="h-full bg-black/30">{children}</div>
         </div>
       </main>
-    </DashboardContainer>
+    </div>
   );
 };
 
