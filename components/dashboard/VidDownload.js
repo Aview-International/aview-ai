@@ -74,7 +74,7 @@ const VidDownload = () => {
     <div className="flex h-full w-full flex-col items-center text-white">
       <h1
         className={`${
-          isLoading ? 'mt-s10' : 'mt-s24'
+          isLoading ? 'mt-s5' : 'mt-s24'
         } text-center text-5xl font-bold text-white`}
       >
         YouTube Video Downloader
@@ -96,8 +96,8 @@ const VidDownload = () => {
         </Button>
       </div>
       {isLoading && (
-        <div className="mys1 flex w-[90%] flex-col justify-center overflow-y-scroll md:mt-s4 md:w-full md:flex-row md:items-start md:gap-x-10">
-          <div className="h-48 w-full rounded-lg bg-white p-0.5 md:h-80 md:w-[540px]">
+        <div className="my-s1 flex w-[90%] flex-col justify-center overflow-y-auto md:mt-s4 md:w-full md:flex-row md:items-start md:gap-x-10">
+          <div className="h-40 w-full rounded-lg bg-white p-0.5 md:h-80 md:w-[540px]">
             <video controls className="h-full w-full rounded-lg">
               <source src={videoUrl} type="video/mp4" />
               Your browser does not support the video tag.

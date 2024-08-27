@@ -36,7 +36,7 @@ export default function DashboardMobileMenu({ isOpen, handler }) {
       <nav className="flex flex-grow flex-col justify-between overflow-hidden">
         <MainMenu isOpen={isOpen} handler={handler}/>
       </nav>
-      <div className={`flex-grow-0 flex-col gap-4`}>
+      {/* <div className={`flex-grow-0 flex-col gap-4`}>
         <Button
           purpose="route"
           route="/login"
@@ -45,13 +45,12 @@ export default function DashboardMobileMenu({ isOpen, handler }) {
         >
           Logout
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }
 
 export function MainMenu({isOpen, handler}) {
-  
   const { route } = useRouter();
 
   return (

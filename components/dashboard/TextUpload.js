@@ -73,7 +73,7 @@ const TextToSpeechInput = () => {
 
   return (
     <>
-      <div className="flex h-[50%] w-[95%] flex-col justify-center rounded-lg bg-white-transparent md:w-2/3 ">
+      <div className="flex h-3/5 w-[95%] flex-col justify-center rounded-lg bg-white-transparent md:w-2/3">
         <div className="px-2 md:px-4">
           <Textarea
             _id={'textarea'}
