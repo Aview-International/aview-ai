@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.5",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@notionhq/client": "^2.2.5",
     "@reduxjs/toolkit": "^1.9.5",
@@ -16,6 +17,7 @@
     "@stripe/stripe-js": "^2.3.0",
     "@typeform/embed-react": "^2.4.0",
     "aos": "^2.3.4",
+    "apollo-upload-client": "^18.0.1",
     "axios": "^0.27.2",
     "firebase": "^9.11.0",
     "form-data": "^4.0.0",

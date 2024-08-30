@@ -7,25 +7,37 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import store from '../store';
+import ApolloProvider from '../providers/apollo.provider';
+import { generateDeviceFingerprint } from '../utils/deviceFingerprint';
+import Cookies from 'js-cookie';
 
 const MyApp = ({ Component, pageProps }) => {
+  useEffect(() => {
+    (async () => {
+      const fingerprint = await generateDeviceFingerprint();
+      Cookies.set('fingerprint', fingerprint);
+    })();
+  }, []);
+
   return (
     <Provider store={store}>
-      <MenuOpenContextProvider>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-        <Layout Component={Component} pageProps={pageProps} />
-      </MenuOpenContextProvider>
+      <ApolloProvider>
+        <MenuOpenContextProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+          <Layout Component={Component} pageProps={pageProps} />
+        </MenuOpenContextProvider>
+      </ApolloProvider>
     </Provider>
   );
 };
