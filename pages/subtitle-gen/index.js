@@ -85,8 +85,8 @@ const SubtitleGenerator = () => {
   };
 
   return (
-    <div className="w-full flex-col p-3">
-      <div className="flex flex-col items-center justify-center md:flex-row">
+    <div className="w-full h-full">
+      <div className="flex flex-col items-center h-full justify-center md:flex-row">
         <UploadSection
           handleFileName={setFileName}
           fileName={fileName}

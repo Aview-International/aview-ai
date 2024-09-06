@@ -96,8 +96,8 @@ const VidDownload = () => {
         </Button>
       </div>
       {isLoading && (
-        <div className="my-s1 flex w-[90%] flex-col justify-center overflow-y-auto md:mt-s4 md:w-full md:flex-row md:items-start md:gap-x-10">
-          <div className="h-40 w-full rounded-lg bg-white p-0.5 md:h-80 md:w-[540px]">
+        <div className="my-s1 flex max-w-[90%] flex-col justify-center overflow-y-auto md:mt-s4 md:w-full md:flex-row md:items-start md:gap-x-10">
+          <div className="min-h-40 w-full rounded-lg bg-white p-0.5 md:h-80 md:max-w-[540px]">
             <video controls className="h-full w-full rounded-lg">
               <source src={videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
@@ -118,7 +118,7 @@ const TableView = ({ options }) => {
       {options.map((option, index) => {
         return (
           <div
-            className="mb-1 mt-3 w-full rounded-md bg-white-transparent p-1 md:mb-2 md:mt-0 md:w-[540px] md:p-2"
+            className="mb-1 mt-3 w-full rounded-md bg-white-transparent p-1 md:mb-2 md:mt-0 md:min-w-[540px] md:p-2"
             key={index}
           >
             <p className="border-b border-white/60 p-1 md:p-2">

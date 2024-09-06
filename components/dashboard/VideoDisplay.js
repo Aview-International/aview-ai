@@ -4,7 +4,7 @@ import deleteIcon from '../../public/img/icons/trash.svg';
 const VideoDisplay = ({ videoFile, handleVideo }) => {
   return (
     <section className="mx-auto flex h-full w-full items-center justify-center text-white">
-      <div className="relative my-s3 flex h-[420px] w-[96%] items-center justify-center rounded-lg bg-white">
+      <div className="relative my-s3 flex min-h-[420px] w-[96%] items-center justify-center rounded-lg bg-white">
         {videoFile && (
           <>
             <div className="relative flex h-full w-auto items-center justify-center">

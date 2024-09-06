@@ -12,10 +12,10 @@ const Header = () => {
   };
 
   return (
-    <header className="relative flex w-full items-center justify-end bg-white-transparent py-s3 text-white lg:py-2 lg:px-5">
+    <header className="relative flex w-full items-center justify-end bg-white-transparent py-s3 text-white lg:py-5 lg:px-5">
       <MenuButtonIcon handler={handlerMenuIcon} styles={'absolute left-6'} />
       <DashboardMobileMenu isOpen={isMenuIconOpen} handler={handlerMenuIcon} />
-      <div className="hidden space-x-4 lg:flex">
+      <div className="hidden space-x-4 md:flex">
         <Link href="/login">
           <a className="m-3 mr-4">Log in</a>
         </Link>

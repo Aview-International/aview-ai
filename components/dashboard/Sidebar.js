@@ -12,7 +12,7 @@ const DashboardSidebar = ({ setHandler, isOpen }) => {
     <aside
       className={`${
         isOpen ? 'w-[180px]' : 'w-[80px]'
-      } relative hidden bg-white-transparent pt-s5 text-white transition-all md:block`}
+      } relative hidden bg-white-transparent pt-s10 text-white transition-all md:block`}
     >
       <div className="flex w-full items-center justify-between px-s2">
         {isOpen && (

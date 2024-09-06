@@ -10,7 +10,7 @@ import { DASHBOARD_NAVLINKS } from '../../constants/constants';
 export default function DashboardMobileMenu({ isOpen, handler }) {
   return (
     <div
-      className={`h-screen-trick transition-300 absolute top-0 left-0 z-50 flex w-2/4 flex-col gap-12 overflow-hidden bg-black pt-8 pb-10 2xs:px-2 md:px-6 lg:hidden ${
+      className={`h-screen-trick transition-300 absolute top-0 left-0 z-50 flex w-2/4 flex-col gap-12 bg-black pt-8 pb-10 2xs:px-2 md:px-6 md:hidden ${
         isOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
       }`}
     >
