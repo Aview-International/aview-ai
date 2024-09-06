@@ -4,16 +4,28 @@ import VideoDisplay from '../../components/dashboard/VideoDisplay';
 import VideoEditor from '../../components/dashboard/VideoEditor';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import { toast } from 'react-toastify';
+import { useMutation } from '@apollo/client';
+import ErrorHandler from '../../utils/errorHandler';
+import { TRANSCRIBE_VIDEO } from '../../graphql/ai-tools';
 
 const SubtitleGenerator = () => {
   const [videoFile, setVideoFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [subtitles, setSubtitles] = useState([]);
-  const videoRef = useRef(null);
   const [fileName, setFileName] = useState('');
   const [language, setLanguage] = useState({
     fromLanguage: '',
     toLanguage: '',
+  });
+
+  const [uploadFile, { loading }] = useMutation(TRANSCRIBE_VIDEO, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (err) => {
+      console.log(err);
+      ErrorHandler(err.message);
+    },
   });
 
   const handleLanguageChange = (type, value) => {
@@ -32,16 +44,18 @@ const SubtitleGenerator = () => {
       toast.error('Please upload video');
       return;
     }
-    if (language.fromLanguage === '' || language.toLanguage === '') {
-      toast.error('Please select languages');
-      return;
-    }
-    if (language.fromLanguage === language.toLanguage) {
-      toast.error('Languages must be different');
-      setLanguage({ ...language, toLanguage: '' });
-      return;
-    }
-    console.log('loading');
+
+    uploadFile({ variables: { file: videoFile } });
+    // if (language.fromLanguage === '' || language.toLanguage === '') {
+    //   toast.error('Please select languages');
+    //   return;
+    // }
+    // if (language.fromLanguage === language.toLanguage) {
+    //   toast.error('Languages must be different');
+    //   setLanguage({ ...language, toLanguage: '' });
+    //   return;
+    // }
+    // console.log('loading');
     // try {
     //   const transcribedText = await getText(videoFile, language);
     //   downloadFile(transcribedText);
@@ -71,8 +85,8 @@ const SubtitleGenerator = () => {
   };
 
   return (
-    <div className="w-full flex-col p-3">
-      <div className="flex flex-col items-center justify-center md:flex-row">
+    <div className="w-full h-full">
+      <div className="flex flex-col items-center h-full justify-center md:flex-row">
         <UploadSection
           handleFileName={setFileName}
           fileName={fileName}

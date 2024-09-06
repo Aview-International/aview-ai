@@ -21,7 +21,7 @@ const UploadSection = ({
   const options = ['English', 'Hindi', 'Spanish', 'Portuguese', 'Arabic'];
 
   return (
-    <div className="mt-2 w-full max-w-md rounded-xl bg-white-transparent px-3 pt-3 pb-s8 text-white md:w-1/3">
+    <div className="mt-2 w-full rounded-xl bg-white-transparent px-3 pt-3 pb-s8 text-white md:w-1/3">
       <h1 className="mb-5 text-lg">
         {isVoiceGen ? 'Multilingual Voiceover Generator' : 'Subtitle Generator'}
       </h1>

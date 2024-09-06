@@ -3,7 +3,7 @@ import React from 'react';
 const MenuButtonIcon = ({ styles, handler }) => {
   return (
     <div
-      className={`flex cursor-pointer flex-col lg:hidden ${
+      className={`flex cursor-pointer flex-col md:hidden ${
         styles ?? ''
       }`}
       onClick={handler}

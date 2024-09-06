@@ -3,20 +3,44 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { DASHBOARD_NAVLINKS } from '../../constants/constants';
 import signout from '../../public/img/icons/signout.svg';
+import sidebarArrow from '../../public/img/icons/sidebar-arrow.svg';
+import AviewLogo from '../../public/img/aview/logo.svg';
 import { useRouter } from 'next/router';
 
-const DashboardSidebar = () => {
+const DashboardSidebar = ({ setHandler, isOpen }) => {
   return (
     <aside
-      className={`relative hidden w-[160px] bg-white-transparent pt-s5 text-white md:block`}
+      className={`${
+        isOpen ? 'w-[180px]' : 'w-[80px]'
+      } relative hidden bg-white-transparent pt-s10 text-white transition-all md:block`}
     >
-      <Navlink />
-      <Signout />
+      <div className="flex w-full items-center justify-between px-s2">
+        {isOpen && (
+          <Link href="/dashboard">
+            <a>
+              <Image
+                src={AviewLogo}
+                alt="AVIEW International logo"
+                width={70}
+                height={70}
+              />
+            </a>
+          </Link>
+        )}
+        <button
+          className={!isOpen ? 'rotate-180' : ''}
+          onClick={() => setHandler(!isOpen)}
+        >
+          <Image src={sidebarArrow} alt="arrow" width={35} height={35} />
+        </button>
+      </div>
+      <Navlink isOpen={isOpen} />
+      {/* <Signout isOpen={isOpen}/> */}
     </aside>
   );
 };
 
-const Navlink = () => {
+const Navlink = ({ isOpen }) => {
   const { route } = useRouter();
   return (
     <div className="mt-s10 mb-s3 w-full text-sm">
@@ -26,7 +50,7 @@ const Navlink = () => {
           key={`sidebar-link-${index}`}
         >
           <a
-            className={`group relative mb-s2.5 flex items-center rounded-[4px] p-s1 hover:bg-[#fcfcfc] hover:bg-opacity-10 ${
+            className={`group relative mb-s2.5 flex items-center rounded-[4px] py-s1 px-s3 hover:bg-[#fcfcfc] hover:bg-opacity-10 ${
               route === link.route() && 'bg-[#fcfcfc] bg-opacity-10'
             }`}
           >
@@ -50,7 +74,21 @@ const Navlink = () => {
                 layout="fixed"
               />
             </span>
-            <span>{link.text}</span>
+            <span
+              className={`${
+                isOpen ? '' : 'absolute left-24 top-1 z-10 rounded-md bg-black'
+              }`}
+            >
+              <span
+                className={`${
+                  isOpen
+                    ? ''
+                    : 'hidden rounded-md bg-black p-s1 group-hover:inline-block'
+                } ${route === link.route() ? 'text-[#fcfcfc]' : ''}`}
+              >
+                {link.text}
+              </span>
+            </span>
           </a>
         </Link>
       ))}
@@ -58,7 +96,7 @@ const Navlink = () => {
   );
 };
 
-const Signout = () => {
+const Signout = ({ isOpen }) => {
   return (
     <button
       className={`hover:gradient-dark group absolute bottom-5 flex w-full items-center p-s1 text-sm`}
