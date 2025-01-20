@@ -10,27 +10,30 @@ import store from '../store';
 import { SocketProvider } from '../socket';
 
 const MyApp = ({ Component, pageProps }) => {
-  return (
-    <Provider store={store}>
-      <SocketProvider>
-        <MenuOpenContextProvider>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
-          <Layout Component={Component} pageProps={pageProps} />
-        </MenuOpenContextProvider>
-      </SocketProvider>
-    </Provider>
-  );
+  useEffect(() => {
+    window.location.href = 'https://aviewint.com/';
+  }, []);
+
+  return;
+  // <Provider store={store}>
+  //   <SocketProvider>
+  //     <MenuOpenContextProvider>
+  //       <ToastContainer
+  //         position="top-right"
+  //         autoClose={5000}
+  //         hideProgressBar={false}
+  //         newestOnTop={false}
+  //         closeOnClick
+  //         rtl={false}
+  //         pauseOnFocusLoss
+  //         draggable
+  //         pauseOnHover
+  //         theme="dark"
+  //       />
+  //       <Layout Component={Component} pageProps={pageProps} />
+  //     </MenuOpenContextProvider>
+  //   </SocketProvider>
+  // </Provider>
 };
 
 const Layout = ({ Component, pageProps }) => {
