@@ -1,7 +1,9 @@
 import { AI_Tools_Page } from '../../../constants/constants';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const AiToolsPage = () => {
+  const baseUrl = 'http://localhost:3000';
   return (
     <section className="m-horizontal  text-white">
       <div className="my-s10 w-4/5 md:mx-auto md:w-2/4">
@@ -16,15 +18,15 @@ const AiToolsPage = () => {
       <div className="mb-s18 flex grid-cols-3 flex-col gap-5 md:grid md:gap-8">
         {AI_Tools_Page.map((item, index) => {
           return (
-            <div key={index}>
-              <div className="flex items-center justify-center">
+            <Link href={`${baseUrl}/${item.link}`} key={index} passHref>
+              <a className="flex cursor-pointer flex-col items-center justify-center gap-y-2 rounded-xl bg-white-transparent py-2">
                 <Image src={item.img} alt="img" width={240} height={240} />
-              </div>
-              <p className="mt-2 text-5xl font-semibold md:mt-4">
-                {item.title}
-              </p>
-              <p className="mt-2">{item.description}</p>
-            </div>
+                <p className="text-center text-5xl font-semibold">
+                  {item.title}
+                </p>
+                <p className="text-center">{item.description}</p>
+              </a>
+            </Link>
           );
         })}
       </div>
